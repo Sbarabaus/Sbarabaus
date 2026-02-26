@@ -425,3 +425,114 @@ body.menu-open {
     top: -1.1rem;
   }
 }
+
+.footer-cta {
+  background: #0f9ad8;
+  color: #fff;
+  padding-top: 3.2rem;
+}
+
+.footer-cta h3 {
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.02;
+  margin-bottom: 1rem;
+}
+
+.footer-main {
+  padding-bottom: 2rem;
+  align-items: center;
+}
+
+.footer-logo {
+  width: clamp(10.5rem, 20vw, 14.5rem);
+  max-width: 100%;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.footer-cta .contact-line {
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.social-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.social-circle {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.social-circle i {
+  font-size: 1.05rem;
+  color: #fff;
+}
+
+.social-circle.social-facebook:hover {
+  background: #1877f2;
+  border-color: #1877f2;
+}
+
+.social-circle.social-instagram:hover {
+  background: #e1306c;
+  border-color: #e1306c;
+}
+
+.social-circle.social-vimeo:hover {
+  background: #1ab7ea;
+  border-color: #1ab7ea;
+}
+
+.legal-line {
+  margin: 0 0 0.3rem;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  opacity: 0.9;
+  font-weight: 700;
+}
+
+.footer-meta {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.85rem 0 1rem;
+  text-align: center;
+}
+
+.small-muted {
+  font-size: 0.96rem;
+  opacity: 0.85;
+}
+
+.footer-signature {
+  background: #fff;
+  color: #1a1a1a;
+  text-align: center;
+  padding: 0.95rem 0 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.footer-signature a {
+  color: #d0005e;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+.footer-signature a:hover {
+  text-decoration: underline;
+}
