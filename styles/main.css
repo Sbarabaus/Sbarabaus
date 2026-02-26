@@ -349,7 +349,7 @@
       position: absolute;
       right: clamp(1.1rem, 3.3vw, 2.5rem);
       bottom: clamp(-4rem, -4.3vw, -2.9rem);
-      width: clamp(19.2rem, 35.2vw, 26.4rem);
+      width: clamp(20rem, 45vw, 32rem);
       background: #0ea6e9;
       border: 8px solid #fff;
       border-radius: 1.6rem;
@@ -423,7 +423,8 @@
       color: #1f1f1f;
       border-radius: 999px;
       padding: 0.32rem 1rem 0.4rem;
-      font-size: clamp(1.36rem, 1.76vw, 2.12rem);
+      font-family: "Margarine", "Sofia Sans", sans-serif;
+      font-size: clamp(1.22rem, 1.58vw, 1.9rem);
       font-weight: 800;
       line-height: 0.9;
       white-space: nowrap;
@@ -514,6 +515,11 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+
+    #chatSliderTitle,
+    #chatSliderText {
+      text-align: left;
     }
 
     .chat-controls {
@@ -621,6 +627,12 @@
       padding: 1rem;
     }
 
+    .team-blob img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
     .service-col {
       display: flex;
       justify-content: center;
@@ -689,6 +701,7 @@
       z-index: 1;
       margin: 0;
       color: #fff;
+      font-size: 0.9em;
       line-height: 1.3;
       font-weight: 600;
       opacity: 0;
