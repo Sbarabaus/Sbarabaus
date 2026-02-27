@@ -117,7 +117,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.35rem;
+      gap: 1.5rem;
     }
 
     .menu-overlay-link {
@@ -160,7 +160,7 @@
     .menu-submenu-link {
       color: rgba(255, 255, 255, 0.9);
       text-decoration: none;
-      font-size: clamp(1rem, 1.05vw, 1.25rem);
+      font-size: clamp(1.5rem, 1.575vw, 1.875rem);
       font-weight: 700;
       line-height: 1.1;
       transition: color 0.2s ease;
@@ -586,6 +586,46 @@
 
     .section-title .accent {
       color: var(--teal);
+    }
+    .section-title-reveal {
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-inline: auto;
+      overflow: visible;
+    }
+
+    .section-title-reveal .section-title-text {
+      position: relative;
+      z-index: 2;
+      display: block;
+    }
+
+    .section-title-sticker {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: clamp(11.5rem, 19vw, 15.2rem);
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, -24%) rotate(-6deg) scale(0.86);
+      transition: opacity 0.55s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      filter: drop-shadow(0 0.4rem 0.75rem rgba(0, 0, 0, 0.22));
+    }
+
+    .section-title-reveal.is-in-view .section-title-sticker {
+      opacity: 1;
+      transform: translate(-50%, -52%) rotate(-6deg) scale(1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .section-title-sticker {
+        opacity: 1;
+        transform: translate(-50%, -52%) rotate(-6deg) scale(1);
+        transition: none;
+      }
     }
 
     .typing-text::after {
@@ -1383,7 +1423,7 @@
       }
 
       .menu-submenu-link {
-        font-size: clamp(0.85rem, 4vw, 1.05rem);
+        font-size: clamp(1.275rem, 6vw, 1.575rem);
       }
 
       .menu-overlay-team {

@@ -114,34 +114,68 @@
       }
     });
 
-    const handledItems = new WeakSet();
+        const parentLinkBySubmenu = new WeakMap();
 
     menuLinks.forEach(function (link) {
       const item = link.closest(".menu-item");
+      const submenu = item ? item.querySelector(".menu-submenu") : null;
 
-      if (item && !handledItems.has(item)) {
-        item.addEventListener("mouseenter", function () {
-          showBubbleForLink(link);
-        });
-        item.addEventListener("mouseleave", hideBubble);
-        handledItems.add(item);
-      } else if (!item) {
-        link.addEventListener("mouseenter", function () {
-          showBubbleForLink(link);
-        });
-        link.addEventListener("mouseleave", hideBubble);
-      }
+      link.addEventListener("mouseenter", function () {
+        showBubbleForLink(link);
+      });
+
+      link.addEventListener("mouseleave", function () {
+        if (!submenu || !submenu.matches(":hover")) {
+          hideBubble();
+        }
+      });
 
       link.addEventListener("focus", function () {
         showBubbleForLink(link);
       });
-      link.addEventListener("blur", hideBubble);
+
+      link.addEventListener("blur", function () {
+        if (!submenu || !submenu.matches(":focus-within")) {
+          hideBubble();
+        }
+      });
+
       link.addEventListener("click", closeMenu);
+
+      if (submenu) {
+        parentLinkBySubmenu.set(submenu, link);
+
+        submenu.addEventListener("mouseenter", function () {
+          showBubbleForLink(link);
+        });
+
+        submenu.addEventListener("mouseleave", function () {
+          hideBubble();
+        });
+      }
     });
 
     subMenuLinks.forEach(function (link) {
+      link.addEventListener("mouseenter", function () {
+        const submenu = link.closest(".menu-submenu");
+        const parentLink = submenu ? parentLinkBySubmenu.get(submenu) : null;
+        if (parentLink) {
+          showBubbleForLink(parentLink);
+        }
+      });
+
+      link.addEventListener("focus", function () {
+        const submenu = link.closest(".menu-submenu");
+        const parentLink = submenu ? parentLinkBySubmenu.get(submenu) : null;
+        if (parentLink) {
+          showBubbleForLink(parentLink);
+        }
+      });
+
       link.addEventListener("click", closeMenu);
     });
+
+    overlay.addEventListener("mouseleave", hideBubble);
 
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape" && overlay.classList.contains("is-open")) {
@@ -169,3 +203,4 @@
       initMenuOverlay();
     });
 })();
+

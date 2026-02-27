@@ -148,34 +148,68 @@
         hoverBubble.classList.remove("is-visible");
       }
 
-      const handledItems = new WeakSet();
+      const parentLinkBySubmenu = new WeakMap();
 
       menuLinks.forEach(function (link) {
         const item = link.closest(".menu-item");
+        const submenu = item ? item.querySelector(".menu-submenu") : null;
 
-        if (item && !handledItems.has(item)) {
-          item.addEventListener("mouseenter", function () {
-            showBubbleForLink(link);
-          });
-          item.addEventListener("mouseleave", hideBubble);
-          handledItems.add(item);
-        } else if (!item) {
-          link.addEventListener("mouseenter", function () {
-            showBubbleForLink(link);
-          });
-          link.addEventListener("mouseleave", hideBubble);
-        }
+        link.addEventListener("mouseenter", function () {
+          showBubbleForLink(link);
+        });
+
+        link.addEventListener("mouseleave", function () {
+          if (!submenu || !submenu.matches(":hover")) {
+            hideBubble();
+          }
+        });
 
         link.addEventListener("focus", function () {
           showBubbleForLink(link);
         });
-        link.addEventListener("blur", hideBubble);
+
+        link.addEventListener("blur", function () {
+          if (!submenu || !submenu.matches(":focus-within")) {
+            hideBubble();
+          }
+        });
+
         link.addEventListener("click", closeMenu);
+
+        if (submenu) {
+          parentLinkBySubmenu.set(submenu, link);
+
+          submenu.addEventListener("mouseenter", function () {
+            showBubbleForLink(link);
+          });
+
+          submenu.addEventListener("mouseleave", function () {
+            hideBubble();
+          });
+        }
       });
 
       subMenuLinks.forEach(function (link) {
+        link.addEventListener("mouseenter", function () {
+          const submenu = link.closest(".menu-submenu");
+          const parentLink = submenu ? parentLinkBySubmenu.get(submenu) : null;
+          if (parentLink) {
+            showBubbleForLink(parentLink);
+          }
+        });
+
+        link.addEventListener("focus", function () {
+          const submenu = link.closest(".menu-submenu");
+          const parentLink = submenu ? parentLinkBySubmenu.get(submenu) : null;
+          if (parentLink) {
+            showBubbleForLink(parentLink);
+          }
+        });
+
         link.addEventListener("click", closeMenu);
       });
+
+      overlay.addEventListener("mouseleave", hideBubble);
 
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && overlay.classList.contains("is-open")) {
@@ -184,6 +218,47 @@
       });
     })();
 
+
+    (function () {
+      const revealTitles = document.querySelectorAll(".section-title-reveal");
+      if (!revealTitles.length) return;
+
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        revealTitles.forEach(function (title) {
+          title.classList.add("is-in-view");
+        });
+        return;
+      }
+
+      let lastScrollY = window.scrollY;
+
+      const observer = new IntersectionObserver(
+        function (entries) {
+          const currentScrollY = window.scrollY;
+          const isScrollingUp = currentScrollY < lastScrollY;
+          lastScrollY = currentScrollY;
+
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-in-view");
+              return;
+            }
+
+            if (isScrollingUp) {
+              entry.target.classList.remove("is-in-view");
+            }
+          });
+        },
+        {
+          threshold: 0.01,
+          rootMargin: "-35% 0px -35% 0px",
+        }
+      );
+
+      revealTitles.forEach(function (title) {
+        observer.observe(title);
+      });
+    })();
     (function () {
       const typingText = document.getElementById("typing-text");
       if (!typingText) return;
@@ -451,3 +526,4 @@
 
       renderOriginals();
     })();
+
