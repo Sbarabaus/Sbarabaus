@@ -1,4 +1,6 @@
-﻿:root {
+﻿@import url("https://fonts.googleapis.com/css2?family=Margarine&display=swap");
+
+:root {
   color-scheme: light;
 }
 
@@ -240,7 +242,7 @@ body.menu-open {
 
 .page-hero {
   position: relative;
-  min-height: clamp(34rem, 78vh, 47rem);
+  min-height: clamp(38rem, 84vh, 52rem);
   display: flex;
   align-items: center;
   overflow: visible;
@@ -269,14 +271,14 @@ body.menu-open {
   max-width: 1700px;
   margin-inline: auto;
   width: 100%;
-  padding: clamp(5.2rem, 12vh, 7.2rem) clamp(1rem, 3.5vw, 2.5rem) clamp(5.4rem, 12vh, 7rem);
+  padding: clamp(5.2rem, 12vh, 7.2rem) clamp(1rem, 3.5vw, 2.5rem) clamp(4rem, 8vh, 5.4rem);
   position: relative;
 }
 
 .page-hero-text {
   position: relative;
   color: #fff;
-  max-width: min(60rem, 64vw);
+  max-width: min(58rem, 60vw);
   z-index: 1;
 }
 
@@ -285,7 +287,7 @@ body.menu-open {
   left: 0;
   top: clamp(-2.2rem, -4.2vw, -1.2rem);
   margin: 0;
-  font-size: clamp(2.3rem, 7vw, 5.8rem);
+  font-size: clamp(3.2rem, 8vw, 7rem);
   font-weight: 900;
   letter-spacing: 0.01em;
   color: rgba(255, 255, 255, 0.32);
@@ -295,7 +297,8 @@ body.menu-open {
 
 .page-hero-title {
   margin: 0;
-  font-size: clamp(3.6rem, 8vw, 6.8rem);
+  font-size: clamp(4.8rem, 9.2vw, 8.1rem);
+  font-family: "Margarine", "Sofia Sans", sans-serif;
   font-weight: 900;
   line-height: 0.9;
   text-transform: uppercase;
@@ -312,14 +315,14 @@ body.menu-open {
 
 .page-hero-media {
   position: absolute;
-  right: clamp(1rem, 4vw, 3.2rem);
-  bottom: clamp(-2.8rem, -5vw, -1.4rem);
-  z-index: 2;
+  right: clamp(0.5rem, 2.8vw, 2.3rem);
+  bottom: clamp(-10.5rem, -14vw, -6.5rem);
+  z-index: 3;
   pointer-events: none;
 }
 
 .page-hero-media img {
-  width: min(42vw, 36rem);
+  width: min(48vw, 43rem);
   height: auto;
   display: block;
 }
@@ -342,6 +345,329 @@ body.menu-open {
   font-weight: 900;
 }
 
+.studio-container {
+  max-width: 1700px;
+  margin: 0 auto;
+  padding-inline: clamp(1rem, 3.5vw, 2.5rem);
+}
+
+.studio-intro {
+  background: #ececef;
+  padding: clamp(3rem, 7vw, 5rem) 0;
+}
+
+.studio-intro-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.studio-intro-text h2 {
+  margin: 0 0 1.1rem;
+  font-size: clamp(2.1rem, 3.9vw, 3.3rem);
+  line-height: 1.02;
+  font-weight: 900;
+}
+
+.studio-intro-text p {
+  margin: 0 0 1rem;
+  max-width: 42rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.studio-intro-card {
+  background: #07a3e7;
+  border-radius: 1.15rem;
+  overflow: hidden;
+  box-shadow: 0 0.7rem 1.5rem rgba(0, 0, 0, 0.14);
+}
+
+.studio-intro-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.studio-timeline {
+  background: radial-gradient(circle at 50% 5%, rgba(25, 39, 60, 0.7), #070a0f 58%, #030407 100%);
+  color: #fff;
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+}
+
+.studio-timeline-heading {
+  color: #0fa8ea;
+  text-align: center;
+  margin: 0 0 1.8rem;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+}
+
+.studio-timeline-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(0.9rem, 2vw, 2rem);
+}
+
+.studio-timeline-nav {
+  width: clamp(2.6rem, 4vw, 3.2rem);
+  height: clamp(2.6rem, 4vw, 3.2rem);
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #0fa8ea;
+  font-size: clamp(1.45rem, 2vw, 1.9rem);
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.studio-timeline-nav:hover {
+  color: #39bbf2;
+  transform: scale(1.08);
+}
+
+.studio-timeline-content {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(14rem, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.4rem);
+}
+
+.studio-timeline-media {
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+}
+
+.studio-timeline-media #studioTimelineImage {
+  width: min(100%, 22rem);
+  display: block;
+  filter: drop-shadow(0 0.35rem 0.85rem rgba(0, 0, 0, 0.32));
+}
+
+.studio-timeline-copy h4 {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1.75rem, 2.8vw, 2.7rem);
+  line-height: 1;
+  font-weight: 900;
+}
+
+.studio-timeline-copy p {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.studio-panebarcos-cta {
+  background: #ececef;
+  text-align: center;
+  padding: clamp(3rem, 7vw, 5rem) 0;
+}
+
+.studio-panebarcos-cta h3 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 1.05;
+  font-weight: 900;
+}
+
+.studio-panebarcos-cta p {
+  margin: 0 auto 1.35rem;
+  max-width: 56rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.studio-btn {
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: clamp(0.84rem, 1.15vw, 1.08rem);
+  font-weight: 800;
+  color: #fff;
+  background: #0fa8ea;
+  border-radius: 999px;
+  padding: 0.45rem 1.8rem;
+  transition: background 0.2s ease;
+}
+
+.studio-btn:hover {
+  background: #0999d6;
+  color: #fff;
+}
+
+.studio-team-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.studio-team-photo img {
+  width: 100%;
+  max-height: 38rem;
+  object-fit: cover;
+  display: block;
+}
+
+.studio-team-bubble {
+  position: absolute;
+  top: clamp(0.9rem, 2vw, 1.3rem);
+  right: clamp(0.9rem, 2vw, 1.3rem);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.studio-team-chip {
+  background: #fff;
+  color: #1a1a1a;
+  border-radius: 999px;
+  padding: 0.36rem 0.9rem;
+  font-size: clamp(0.9rem, 1.3vw, 1.2rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.studio-team-avatar {
+  width: clamp(2.2rem, 3.1vw, 2.8rem);
+  height: clamp(2.2rem, 3.1vw, 2.8rem);
+  border-radius: 50%;
+  border: 3px solid #0fa8ea;
+  background: radial-gradient(circle at 35% 35%, #d8d8d8 0 40%, #7a7a7a 41% 100%);
+}
+
+#studioTeamPhotoImage {
+  transition: opacity 0.45s ease;
+}
+
+#studioTeamPhotoImage.is-switching {
+  opacity: 0.3;
+}
+
+.studio-oscar {
+  background: #ececef;
+  padding: clamp(3rem, 7vw, 5rem) 0;
+}
+
+.studio-oscar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 3rem);
+}
+
+.studio-oscar-media img {
+  width: 100%;
+  max-width: 36rem;
+  border-radius: 1rem;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 0.7rem 1.5rem rgba(0, 0, 0, 0.12);
+}
+
+.studio-oscar-text h3 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 0.98;
+  font-weight: 900;
+}
+
+.studio-oscar-accent {
+  color: #0fa8ea;
+}
+
+.studio-oscar-text p {
+  margin: 0 0 1.2rem;
+  font-weight: 700;
+  line-height: 1.35;
+  max-width: 38rem;
+}
+
+.commercials-hero .page-hero-bgword {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.commercials-hero .page-hero-title {
+  font-size: clamp(4rem, 8vw, 7.1rem);
+}
+
+.commercials-hero .page-hero-subtitle {
+  margin-top: 0.6rem;
+  font-size: clamp(1.2rem, 2vw, 1.9rem);
+}
+
+.commercials-hero .page-hero-media {
+  bottom: clamp(-6rem, -9vw, -3.2rem);
+}
+
+.commercials-hero .page-hero-media img {
+  width: min(36vw, 26rem);
+}
+
+.commercials-intro-title {
+  margin-bottom: 1rem;
+}
+
+.commercials-main-title {
+  letter-spacing: 0.01em;
+}
+
+.commercials-block-title {
+  margin-bottom: 0.55rem;
+  font-size: clamp(2.1rem, 3.4vw, 3rem);
+}
+
+.commercials-block-desc {
+  max-width: 54rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.commercials-cta-box {
+  background: linear-gradient(135deg, #9a4c9f 0%, #8a3f8f 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1rem, 2.5vw, 2.2rem);
+}
+
+.commercials-cta-media {
+  flex: 0 0 auto;
+}
+
+.commercials-cta-media img {
+  width: min(10rem, 22vw);
+  border-radius: 1rem;
+}
+
+.commercials-cta-content h4 {
+  margin: 0 0 0.25rem;
+  font-size: clamp(1.3rem, 2vw, 1.9rem);
+  font-weight: 700;
+}
+
+.commercials-cta-content h3 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 0.95;
+  font-weight: 900;
+}
+
+.commercials-cta-action {
+  flex: 0 0 auto;
+}
+
 @media (max-width: 991.98px) {
   .menu-hover-bubble,
   .menu-overlay-team {
@@ -362,6 +688,47 @@ body.menu-open {
 
   .page-hero-media img {
     width: min(100%, 23rem);
+  }
+
+  .studio-intro-grid,
+  .studio-oscar-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .studio-intro-card {
+    max-width: 30rem;
+  }
+
+  .studio-timeline-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .commercials-hero .page-hero-media {
+    position: absolute;
+    left: auto;
+    right: 0.8rem;
+    transform: none;
+    bottom: -2.4rem;
+  }
+
+  .commercials-hero .page-hero-media img {
+    width: min(45vw, 17rem);
+  }
+
+  .commercials-cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-main .col-lg-4,
+  .footer-main .col-lg-3,
+  .footer-main .col-lg-5 {
+    text-align: center;
+  }
+
+  .social-row {
+    justify-content: center;
   }
 }
 
@@ -417,6 +784,10 @@ body.menu-open {
     padding-top: 5.5rem;
   }
 
+  .page-hero-text {
+    max-width: 94vw;
+  }
+
   .hero-logo img {
     width: clamp(7.6rem, 28vw, 9.3rem);
   }
@@ -424,12 +795,55 @@ body.menu-open {
   .page-hero-bgword {
     top: -1.1rem;
   }
+
+  .studio-timeline-inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .studio-timeline-nav {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .studio-team-bubble {
+    right: 0.6rem;
+    top: 0.6rem;
+  }
+
+  .commercials-hero .page-hero-bgword {
+    top: -0.4rem;
+  }
+
+  .commercials-hero .page-hero-title {
+    font-size: clamp(3.2rem, 12vw, 4.9rem);
+  }
+
+  .commercials-hero .page-hero-media {
+    right: 0.55rem;
+    bottom: -2rem;
+  }
+
+  .commercials-hero .page-hero-media img {
+    width: min(43vw, 13.5rem);
+  }
+
+  .commercials-cta-content h3 {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
 }
 
 .footer-cta {
   background: #0f9ad8;
   color: #fff;
   padding-top: 3.2rem;
+}
+
+.btn-pill {
+  border-radius: 999px;
+  padding-inline: 1.6rem;
+  font-size: 1rem;
+  font-weight: 800;
 }
 
 .footer-cta h3 {
@@ -538,6 +952,8 @@ body.menu-open {
 }
 
 
+
+
 :root {
   --bs-body-font-family: "Sofia Sans", sans-serif;
 }
@@ -558,4 +974,6 @@ body {
 .footer-meta a:hover {
   text-decoration: underline;
 }
+
+
 

@@ -204,3 +204,148 @@
     });
 })();
 
+(function () {
+  const prevBtn = document.getElementById("studioTimelinePrev");
+  const nextBtn = document.getElementById("studioTimelineNext");
+  const imageEl = document.getElementById("studioTimelineImage");
+  const titleEl = document.getElementById("studioTimelineTitle");
+  const textEl = document.getElementById("studioTimelineText");
+
+  if (!prevBtn || !nextBtn || !imageEl || !titleEl || !textEl) return;
+
+  const studioTimelineSteps = [
+    {
+      year: "1965",
+      yearImage: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=1965",
+      image: "https://picsum.photos/seed/studio-timeline-1965/900/600",
+      title: "Le origini",
+      text: "Daniele cresce tra fumetti e libri di avventura e capisce presto che raccontare storie è l'unica cosa che gli viene davvero naturale.",
+    },
+    {
+      year: "1976",
+      yearImage: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=1976",
+      image: "https://picsum.photos/seed/studio-timeline-1976/900/600",
+      title: "Gli inizi",
+      text: "Dopo anni di tentativi, rifiuti e porte chiuse, la sua prima storia a fumetti viene pubblicata sulla rivista Il Mago.",
+    },
+    {
+      year: "1976-1995",
+      yearImage: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=1976-1995",
+      image: "https://picsum.photos/seed/studio-timeline-1976-1995/900/600",
+      title: "Tenacia e passione",
+      text: "Per quasi vent'anni Daniele lavora come autore per le principali riviste italiane, mentre insieme a Lucia costruisce una famiglia numerosa.",
+    },
+    {
+      year: "1995",
+      yearImage: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=1995",
+      image: "https://picsum.photos/seed/studio-timeline-1995/900/600",
+      title: "Dalla carta al digitale",
+      text: "Una crisi personale e creativa lo porta a reinventarsi: nascono le storie interattive e multimediali e prende forma Panebarco & C.",
+    },
+    {
+      year: "1995-2001",
+      yearImage: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=1995-2001",
+      image: "https://picsum.photos/seed/studio-timeline-1995-2001/900/600",
+      title: "L'era multimediale",
+      text: "Panebarco realizza oltre quaranta titoli multimediali per DeAgostini, molti dei quali distribuiti anche all'estero.",
+    },
+    {
+      year: "2001",
+      yearImage: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=2001",
+      image: "https://picsum.photos/seed/studio-timeline-2001/900/600",
+      title: "Un'altra crisi, un nuovo cambiamento",
+      text: "Con il declino del mercato dei CD-ROM, l'azienda affronta una nuova svolta e si prepara a cambiare ancora.",
+    },
+    {
+      year: "2002",
+      yearImage: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=2002",
+      image: "https://picsum.photos/seed/studio-timeline-2002/900/600",
+      title: "L'era del 3D in tempo reale",
+      text: "Il linguaggio dei videogame viene applicato ai beni culturali, dando vita a ricostruzioni 3D immersive di musei e siti archeologici.",
+    },
+    {
+      year: "2010",
+      yearImage: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=2010",
+      image: "https://picsum.photos/seed/studio-timeline-2010/900/600",
+      title: "L'era dei video",
+      text: "La bottega si rinnova: le competenze di Daniele si intrecciano con quelle dei figli e Panebarco entra nel mondo dell'animazione e del video.",
+    },
+    {
+      year: "Oggi",
+      yearImage: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=OGGI",
+      image: "https://picsum.photos/seed/studio-timeline-oggi/900/600",
+      title: "Una bottega di famiglia",
+      text: "Marianna, Matteo e Camilla guidano lo studio tra cartoni animati, spot, VFX e post-produzione, mentre Daniele torna alla sua prima passione: i fumetti.",
+    },
+  ];
+
+  let activeIndex = 0;
+
+  function mod(index, length) {
+    return ((index % length) + length) % length;
+  }
+
+  function render(index) {
+    activeIndex = mod(index, studioTimelineSteps.length);
+    const item = studioTimelineSteps[activeIndex];
+    imageEl.src = item.yearImage;
+    imageEl.alt = "Anno " + item.year;
+    titleEl.textContent = item.title;
+    textEl.textContent = item.text;
+  }
+
+  prevBtn.addEventListener("click", function () {
+    render(activeIndex - 1);
+  });
+
+  nextBtn.addEventListener("click", function () {
+    render(activeIndex + 1);
+  });
+
+  render(0);
+})();
+
+(function () {
+  const bubbleBtn = document.getElementById("studioTeamBubble");
+  const photoEl = document.getElementById("studioTeamPhotoImage");
+
+  if (!bubbleBtn || !photoEl) return;
+
+  const photoCycle = [
+    "images/caramelle.jpg",
+    "images/marta-e-la-morte.jpg",
+    "images/nostoppingnora.jpg",
+    "https://picsum.photos/seed/studio-team-1/1600/900",
+    "https://picsum.photos/seed/studio-team-2/1600/900",
+    "https://picsum.photos/seed/studio-team-3/1600/900",
+    "https://picsum.photos/seed/studio-team-4/1600/900",
+    "https://picsum.photos/seed/studio-team-5/1600/900",
+  ];
+
+  let currentIndex = 0;
+  let intervalId = null;
+
+  function showImage(index) {
+    const safeIndex = ((index % photoCycle.length) + photoCycle.length) % photoCycle.length;
+    currentIndex = safeIndex;
+    photoEl.classList.add("is-switching");
+
+    setTimeout(function () {
+      photoEl.src = photoCycle[currentIndex];
+      photoEl.classList.remove("is-switching");
+    }, 170);
+  }
+
+  function startCycle() {
+    if (intervalId) return;
+    intervalId = setInterval(function () {
+      showImage(currentIndex + 1);
+    }, 1800);
+  }
+
+  bubbleBtn.addEventListener("click", function () {
+    startCycle();
+    showImage(currentIndex + 1);
+  });
+})();
+
