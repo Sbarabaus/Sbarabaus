@@ -349,3 +349,48 @@
   });
 })();
 
+(function () {
+  const section = document.querySelector(".panebarcos-team");
+  const cards = section ? section.querySelectorAll(".panebarcos-motion-wrap") : [];
+
+  if (!section || cards.length === 0) return;
+
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    return;
+  }
+
+  let ticking = false;
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  function renderMotion() {
+    const rect = section.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const progress = clamp((vh * 0.55 - rect.top) / (vh + rect.height), -1, 1);
+
+    cards.forEach(function (card) {
+      const depth = parseFloat(card.dataset.depth || "1");
+      const dirX = parseFloat(card.dataset.dirX || "0");
+      const dirY = parseFloat(card.dataset.dirY || "0");
+      const x = progress * 28 * depth * dirX;
+      const y = progress * 22 * depth * dirY;
+      const r = progress * 4 * depth * dirX;
+      card.style.transform = "translate3d(" + x.toFixed(2) + "px, " + y.toFixed(2) + "px, 0) rotate(" + r.toFixed(2) + "deg)";
+    });
+
+    ticking = false;
+  }
+
+  function requestRender() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(renderMotion);
+  }
+
+  renderMotion();
+  window.addEventListener("scroll", requestRender, { passive: true });
+  window.addEventListener("resize", requestRender);
+})();
+

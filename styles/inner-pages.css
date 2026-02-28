@@ -668,6 +668,126 @@ body.menu-open {
   flex: 0 0 auto;
 }
 
+.panebarcos-hero .page-hero-bgword {
+  color: rgba(255, 255, 255, 0.36);
+}
+
+.panebarcos-hero .page-hero-title {
+  font-size: clamp(4rem, 8.2vw, 7.3rem);
+}
+
+.panebarcos-hero .page-hero-media {
+  bottom: clamp(-7.4rem, -11vw, -4.5rem);
+}
+
+.panebarcos-hero .page-hero-media img {
+  width: min(42vw, 32rem);
+}
+
+.panebarcos-intro-title {
+  margin-bottom: 1rem;
+}
+
+.panebarcos-section-title {
+  font-size: clamp(2.3rem, 4.2vw, 3.6rem);
+  margin-bottom: 1.2rem;
+}
+
+.panebarcos-team-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(0.9rem, 1.8vw, 1.4rem);
+  align-items: start;
+}
+
+.panebarcos-motion-wrap {
+  transform: translate3d(0, 0, 0) rotate(0deg);
+  will-change: transform;
+  transition: transform 0.14s linear;
+}
+
+.panebarcos-pos-1 { grid-column: 1 / span 3; grid-row: 1; }
+.panebarcos-pos-2 { grid-column: 4 / span 3; grid-row: 1; margin-top: 1.2rem; }
+.panebarcos-pos-3 { grid-column: 7 / span 3; grid-row: 1; }
+.panebarcos-pos-4 { grid-column: 10 / span 3; grid-row: 1; margin-top: 1.2rem; }
+.panebarcos-pos-5 { grid-column: 5 / span 4; grid-row: 2; margin-top: -0.6rem; }
+
+.panebarcos-card {
+  background: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0.55rem 1.2rem rgba(0, 0, 0, 0.11);
+}
+
+.panebarcos-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+.panebarcos-card-body {
+  padding: 1rem;
+}
+
+.panebarcos-card-body h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.panebarcos-card-body p {
+  margin: 0.2rem 0 0;
+  font-weight: 700;
+}
+
+.panebarcos-values {
+  background: radial-gradient(circle at 50% 5%, rgba(25, 39, 60, 0.7), #070a0f 58%, #030407 100%);
+}
+
+.panebarcos-value {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  padding: 1.15rem;
+  color: #fff;
+}
+
+.panebarcos-value h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.panebarcos-value p {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.panebarcos-cta-box {
+  background: linear-gradient(135deg, #35a9dc 0%, #208fc7 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.panebarcos-cta-box h4 {
+  margin: 0 0 0.3rem;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-weight: 700;
+}
+
+.panebarcos-cta-box h3 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 0.95;
+  font-weight: 900;
+}
+
 @media (max-width: 991.98px) {
   .menu-hover-bubble,
   .menu-overlay-team {
@@ -716,7 +836,43 @@ body.menu-open {
     width: min(45vw, 17rem);
   }
 
+  .panebarcos-hero .page-hero-media {
+    position: absolute;
+    left: auto;
+    right: 0.7rem;
+    transform: none;
+    bottom: -2.3rem;
+  }
+
+  .panebarcos-hero .page-hero-media img {
+    width: min(44vw, 16.5rem);
+  }
+
+  .panebarcos-team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .panebarcos-pos-1,
+  .panebarcos-pos-2,
+  .panebarcos-pos-3,
+  .panebarcos-pos-4 {
+    grid-column: auto;
+    grid-row: auto;
+    margin-top: 0;
+  }
+
+  .panebarcos-pos-5 {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    margin-top: 0;
+  }
+
   .commercials-cta-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .panebarcos-cta-box {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -826,6 +982,27 @@ body.menu-open {
 
   .commercials-hero .page-hero-media img {
     width: min(43vw, 13.5rem);
+  }
+
+  .panebarcos-hero .page-hero-title {
+    font-size: clamp(3rem, 11.5vw, 4.8rem);
+  }
+
+  .panebarcos-hero .page-hero-media {
+    right: 0.4rem;
+    bottom: -1.9rem;
+  }
+
+  .panebarcos-hero .page-hero-media img {
+    width: min(42vw, 12.8rem);
+  }
+
+  .panebarcos-team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panebarcos-pos-5 {
+    grid-column: auto;
   }
 
   .commercials-cta-content h3 {
