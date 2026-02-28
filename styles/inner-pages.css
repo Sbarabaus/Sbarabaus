@@ -719,15 +719,156 @@ body.menu-open {
   box-shadow: 0 0.55rem 1.2rem rgba(0, 0, 0, 0.11);
 }
 
-.panebarcos-card img {
+.panebarcos-card-media {
+  position: relative;
+  overflow: visible;
+}
+
+.panebarcos-card-photo {
   width: 100%;
   aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+  border-radius: 1rem;
+}
+
+.panebarcos-card-avatar {
+  position: absolute;
+  left: 1.1rem;
+  bottom: -2.7rem;
+  width: 5.4rem;
+  height: 5.4rem;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+
+.panebarcos-card-avatar img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
   object-fit: cover;
   display: block;
 }
 
 .panebarcos-card-body {
-  padding: 1rem;
+  padding: 3.2rem 1.15rem 1.35rem;
+}
+
+.panebarcos-team-secondary {
+  margin-top: 4.5rem;
+}
+
+.panebarcos-portrait-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  box-shadow: 0 0.55rem 1.2rem rgba(0, 0, 0, 0.18);
+  background: #111;
+}
+
+.panebarcos-portrait-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.panebarcos-portrait-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.2rem;
+  padding: 0.9rem 0.85rem;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.72) 100%);
+  color: #fff;
+}
+
+.panebarcos-portrait-overlay h3 {
+  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 800;
+}
+
+.panebarcos-portrait-overlay p {
+  margin: 0;
+  color: #2aa7ff;
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+}
+
+.panebarcos-portrait-icon {
+  margin-top: 0.3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+}
+
+.panebarcos-network {
+  background: #f7f7f8;
+}
+
+.panebarcos-network-title {
+  color: #1b1b1b;
+}
+
+.panebarcos-network-subtitle {
+  margin: 0;
+  color: #5f6b75;
+  font-weight: 700;
+}
+
+.panebarcos-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  background: #fff;
+  border-radius: 0.9rem;
+  border: 1px solid #e4e7ec;
+  box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.06);
+}
+
+.panebarcos-network-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 1200px) {
+  .panebarcos-network-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.panebarcos-pill img {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.panebarcos-pill-name {
+  font-weight: 800;
+  color: #1a1a1a;
+  font-size: 0.98rem;
+}
+
+.panebarcos-pill-role {
+  color: #0fa8ea;
+  font-weight: 700;
+  font-size: 0.88rem;
 }
 
 .panebarcos-card-body h3 {
