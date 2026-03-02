@@ -462,6 +462,123 @@ body.menu-open {
   line-height: 1.35;
 }
 
+.mutante-scroll-story {
+  background: #ececef;
+  color: #121212;
+  min-height: 240vh;
+  padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.mutante-scroll-story .studio-container {
+  max-width: 100%;
+  min-height: inherit;
+  padding-inline: clamp(1rem, 4vw, 3.5rem);
+}
+
+.mutante-scroll-sticky {
+  position: sticky;
+  top: 10vh;
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+}
+
+.mutante-scroll-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.9fr) minmax(18rem, 1.1fr);
+  gap: clamp(1.2rem, 3vw, 3rem);
+  align-items: center;
+}
+
+.mutante-scroll-kicker {
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.48);
+}
+
+.mutante-scroll-fixed h3 {
+  margin: 0 0 0.8rem;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.02;
+  font-weight: 900;
+}
+
+.mutante-scroll-fixed p {
+  margin: 0;
+  max-width: 32rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.mutante-scroll-dynamic {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 1rem;
+  padding: clamp(1rem, 2.2vw, 1.8rem);
+  box-shadow: 0 0.6rem 1.3rem rgba(0, 0, 0, 0.08);
+}
+
+.mutante-scroll-year-wrap {
+  margin-bottom: 1rem;
+}
+
+.mutante-scroll-year-wrap img {
+  width: min(100%, 30rem);
+  display: block;
+  filter: drop-shadow(0 0.35rem 0.85rem rgba(0, 0, 0, 0.3));
+}
+
+.mutante-scroll-dynamic h4 {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  line-height: 1;
+  font-weight: 900;
+}
+
+.mutante-scroll-dynamic p {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.mutante-scroll-progress {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.mutante-scroll-dot {
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.mutante-scroll-dot.is-active {
+  background: #0fa8ea;
+}
+
+.mutante-media {
+  background: #ececef;
+}
+
+.mutante-media-title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.mutante-media-subtitle {
+  font-weight: 700;
+  color: rgba(18, 18, 18, 0.7);
+}
+
 .studio-panebarcos-cta {
   background: #ececef;
   text-align: center;
@@ -965,6 +1082,19 @@ body.menu-open {
     text-align: center;
   }
 
+  .mutante-scroll-story {
+    min-height: 200vh;
+  }
+
+  .mutante-scroll-sticky {
+    top: 8vh;
+    min-height: 84vh;
+  }
+
+  .mutante-scroll-grid {
+    grid-template-columns: 1fr;
+  }
+
   .commercials-hero .page-hero-media {
     position: absolute;
     left: auto;
@@ -1106,6 +1236,14 @@ body.menu-open {
   .studio-team-bubble {
     right: 0.6rem;
     top: 0.6rem;
+  }
+
+  .mutante-scroll-story {
+    min-height: 180vh;
+  }
+
+  .mutante-scroll-sticky {
+    top: 6.5vh;
   }
 
   .commercials-hero .page-hero-bgword {

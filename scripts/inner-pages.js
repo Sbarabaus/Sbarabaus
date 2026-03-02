@@ -350,6 +350,162 @@
 })();
 
 (function () {
+  const section = document.getElementById("mutanteScrollStory");
+  const imageEl = document.getElementById("mutanteTimelineImage");
+  const titleEl = document.getElementById("mutanteTimelineTitle");
+  const textEl = document.getElementById("mutanteTimelineText");
+  const progressEl = document.getElementById("mutanteTimelineProgress");
+
+  if (!section || !imageEl || !titleEl || !textEl || !progressEl) return;
+
+  const steps = [
+    {
+      year: "1965",
+      image: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=1965",
+      title: "Le origini",
+      text: "Daniele cresce tra fumetti e libri di avventura e capisce presto che raccontare storie e l'unica cosa che gli viene davvero naturale.",
+    },
+    {
+      year: "1976",
+      image: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=1976",
+      title: "Gli inizi",
+      text: "Dopo anni di tentativi, rifiuti e porte chiuse, la sua prima storia a fumetti viene pubblicata sulla rivista Il Mago.",
+    },
+    {
+      year: "1976-1995",
+      image: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=1976-1995",
+      title: "Tenacia e passione",
+      text: "Per quasi vent'anni Daniele lavora come autore per le principali riviste italiane, mentre insieme a Lucia costruisce una famiglia numerosa.",
+    },
+    {
+      year: "1995",
+      image: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=1995",
+      title: "Dalla carta al digitale",
+      text: "Una crisi personale e creativa lo porta a reinventarsi: nascono le storie interattive e multimediali e prende forma Panebarco & C.",
+    },
+    {
+      year: "1995-2001",
+      image: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=1995-2001",
+      title: "L'era multimediale",
+      text: "Panebarco realizza oltre quaranta titoli multimediali per DeAgostini, molti dei quali distribuiti anche all'estero.",
+    },
+    {
+      year: "2001",
+      image: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=2001",
+      title: "Un'altra crisi, un nuovo cambiamento",
+      text: "Con il declino del mercato dei CD-ROM, l'azienda affronta una nuova svolta e si prepara a cambiare ancora.",
+    },
+    {
+      year: "2002",
+      image: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=2002",
+      title: "L'era del 3D in tempo reale",
+      text: "Il linguaggio dei videogame viene applicato ai beni culturali, dando vita a ricostruzioni 3D immersive di musei e siti archeologici.",
+    },
+    {
+      year: "2010",
+      image: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=2010",
+      title: "L'era dei video",
+      text: "La bottega si rinnova: le competenze di Daniele si intrecciano con quelle dei figli e Panebarco entra nel mondo dell'animazione e del video.",
+    },
+    {
+      year: "OGGI",
+      image: "https://dummyimage.com/1200x500/0b0f16/ffffff&text=OGGI",
+      title: "Una bottega di famiglia",
+      text: "Marianna, Matteo e Camilla guidano lo studio tra cartoni animati, spot, VFX e post-produzione, mentre Daniele torna alla sua prima passione: i fumetti.",
+    },
+  ];
+
+  let index = 0;
+  let transitionLock = false;
+  let wheelBuffer = 0;
+  let lastDirection = 0;
+
+  function inActiveZone() {
+    const rect = section.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    return rect.top < vh * 0.45 && rect.bottom > vh * 0.55;
+  }
+
+  function render(active) {
+    const item = steps[active];
+    imageEl.src = item.image;
+    imageEl.alt = "Anno " + item.year;
+    titleEl.textContent = item.title;
+    textEl.textContent = item.text;
+    progressEl.innerHTML = "";
+    steps.forEach(function (_, dotIndex) {
+      const dot = document.createElement("span");
+      dot.className = "mutante-scroll-dot" + (dotIndex === active ? " is-active" : "");
+      progressEl.appendChild(dot);
+    });
+  }
+
+  function move(direction) {
+    if (transitionLock) return false;
+    const next = index + direction;
+    if (next < 0 || next > steps.length - 1) return false;
+    transitionLock = true;
+    index = next;
+    render(index);
+    setTimeout(function () {
+      transitionLock = false;
+    }, 360);
+    return true;
+  }
+
+  section.addEventListener(
+    "wheel",
+    function (event) {
+      if (!inActiveZone()) return;
+
+      const direction = event.deltaY > 0 ? 1 : event.deltaY < 0 ? -1 : 0;
+      if (!direction) return;
+
+      const isForward = direction > 0;
+      const canStep = isForward ? index < steps.length - 1 : index > 0;
+
+      if (!canStep) {
+        wheelBuffer = 0;
+        lastDirection = direction;
+        return;
+      }
+
+      event.preventDefault();
+
+      if (transitionLock) return;
+
+      if (lastDirection !== direction) {
+        wheelBuffer = 0;
+        lastDirection = direction;
+      }
+
+      wheelBuffer += event.deltaY;
+
+      const threshold = 70;
+      const reachedThreshold = direction > 0 ? wheelBuffer >= threshold : wheelBuffer <= -threshold;
+      if (!reachedThreshold) return;
+
+      wheelBuffer = 0;
+      move(direction);
+    },
+    { passive: false }
+  );
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!inActiveZone()) {
+        wheelBuffer = 0;
+        lastDirection = 0;
+      }
+    },
+    { passive: true }
+  );
+
+  render(0);
+})();
+
+(function () {
   const section = document.querySelector(".panebarcos-team");
   const cards = section ? section.querySelectorAll(".panebarcos-motion-wrap") : [];
 
