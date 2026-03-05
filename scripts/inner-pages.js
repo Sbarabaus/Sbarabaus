@@ -550,3 +550,75 @@
   window.addEventListener("resize", requestRender);
 })();
 
+(function () {
+  const cards = document.querySelectorAll(".commercials-portfolio-grid .portfolio-item");
+  if (!cards.length) return;
+
+  const tagsList = ["2D", "3D", "Regia", "Animazione", "VFX"];
+
+  cards.forEach(function (card) {
+    if (card.querySelector(".portfolio-tags") || card.querySelector(".portfolio-overlay")) return;
+
+    const img = card.querySelector("img");
+    const baseTitle = img && img.alt ? img.alt.replace(/\s+\d+$/, "") : "Progetto";
+
+    const tags = document.createElement("div");
+    tags.className = "portfolio-tags";
+    tagsList.forEach(function (tagName) {
+      const tag = document.createElement("span");
+      tag.className = "portfolio-tag";
+      tag.textContent = tagName;
+      tags.appendChild(tag);
+    });
+
+    const overlay = document.createElement("div");
+    overlay.className = "portfolio-overlay";
+
+    const title = document.createElement("h3");
+    title.textContent = baseTitle;
+
+    const text = document.createElement("p");
+    text.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.";
+
+    overlay.appendChild(title);
+    overlay.appendChild(text);
+
+    card.appendChild(tags);
+    card.appendChild(overlay);
+  });
+})();
+
+(function () {
+  const reveals = document.querySelectorAll(".commercials-title-reveal");
+  if (!reveals.length) return;
+
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    reveals.forEach(function (el) {
+      el.classList.add("is-visible");
+    });
+    return;
+  }
+
+  const revealBySection = new WeakMap();
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        const reveal = revealBySection.get(entry.target);
+        if (!reveal) return;
+        reveal.classList.toggle("is-visible", entry.isIntersecting);
+      });
+    },
+    {
+      threshold: 0,
+      rootMargin: "0px 0px -25% 0px",
+    }
+  );
+
+  reveals.forEach(function (reveal) {
+    const section = reveal.closest("section");
+    if (!section || revealBySection.has(section)) return;
+    revealBySection.set(section, reveal);
+    observer.observe(section);
+  });
+})();
+

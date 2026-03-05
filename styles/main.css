@@ -6,6 +6,21 @@
       --dark: #343434;
       --night: #070a0d;
       --text-fluid: clamp(1rem, 0.88rem + 0.6vw, 1.4rem);
+      --bs-primary: #0dcaf0;
+      --bs-primary-rgb: 13, 202, 240;
+    }
+
+    :root .text-primary {
+      color: #0dcaf0 !important;
+    }
+
+    .btn-primary {
+      --bs-btn-bg: #0dcaf0;
+      --bs-btn-border-color: #0dcaf0;
+      --bs-btn-hover-bg: #0bb7db;
+      --bs-btn-hover-border-color: #0bb7db;
+      --bs-btn-active-bg: #09a9ca;
+      --bs-btn-active-border-color: #09a9ca;
     }
 
     body {
@@ -1533,4 +1548,3 @@ body {
 .footer-meta a:hover {
   text-decoration: underline;
 }
-

@@ -1,7 +1,24 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Margarine&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:wght@600;700;800;900&display=swap");
+
 :root {
   color-scheme: light;
+  --bs-primary: #0dcaf0;
+  --bs-primary-rgb: 13, 202, 240;
+}
+
+:root .text-primary {
+  color: #0dcaf0 !important;
+}
+
+.btn-primary {
+  --bs-btn-bg: #0dcaf0;
+  --bs-btn-border-color: #0dcaf0;
+  --bs-btn-hover-bg: #0bb7db;
+  --bs-btn-hover-border-color: #0bb7db;
+  --bs-btn-active-bg: #09a9ca;
+  --bs-btn-active-border-color: #09a9ca;
 }
 
 * {
@@ -10,7 +27,7 @@
 
 body {
   margin: 0;
-  font-family: "Sofia Sans", sans-serif;
+  font-family: "Sofia Sans", sans-serif !important;
   background: #ececef;
   color: #121212;
 }
@@ -737,17 +754,166 @@ body.menu-open {
 
 .commercials-main-title {
   letter-spacing: 0.01em;
+  font-size: 3rem;
+  color: #0dcaf0 !important;
 }
 
 .commercials-block-title {
   margin-bottom: 0.55rem;
   font-size: clamp(2.1rem, 3.4vw, 3rem);
+  font-family: "Sofia Sans Semi Condensed", "Sofia Sans", sans-serif;
+  font-weight: 800;
+}
+
+.commercials-title-reveal {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+}
+
+.commercials-title-reveal .commercials-block-title {
+  margin-bottom: 0;
+}
+
+.commercials-title-balloon {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: clamp(9rem, 13vw, 12.5rem);
+  margin-left: 0.55rem;
+  transform: translateY(-50%) translateX(-0.5rem) rotate(-5deg) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0.35rem 0.8rem rgba(0, 0, 0, 0.2));
+  transition: opacity 0.45s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.commercials-title-reveal.is-visible .commercials-title-balloon {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0) rotate(-5deg) scale(1);
 }
 
 .commercials-block-desc {
   max-width: 54rem;
   font-weight: 700;
   line-height: 1.35;
+}
+
+.commercials-portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(0.9rem, 1.8vw, 1.4rem);
+  max-width: 100%;
+}
+
+.commercials-portfolio-grid .portfolio-item {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.14);
+  height: clamp(15.6rem, 24.7vw, 20.8rem);
+}
+
+.commercials-portfolio-grid .portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.commercials-portfolio-grid .portfolio-item.top-left {
+  grid-column: 1 / span 7;
+}
+
+.commercials-portfolio-grid .portfolio-item.top-right {
+  grid-column: 8 / span 5;
+}
+
+.commercials-portfolio-grid .portfolio-item.bottom-left {
+  grid-column: 1 / span 5;
+}
+
+.commercials-portfolio-grid .portfolio-item.bottom-right {
+  grid-column: 6 / span 7;
+}
+
+.commercials-portfolio-grid .portfolio-tags {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  max-width: calc(100% - 1.7rem);
+  opacity: 0;
+  transform: translateY(-0.35rem);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.commercials-portfolio-grid .portfolio-tag {
+  background: #000;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.34rem 0.9rem;
+  font-size: clamp(0.85rem, 0.75rem + 0.28vw, 1rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.commercials-portfolio-grid .portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+  text-align: center;
+  padding: 1.2rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: translateY(0.55rem);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.commercials-portfolio-grid .portfolio-overlay h3 {
+  margin: 0;
+  font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.45rem);
+  line-height: 1.05;
+  font-weight: 900;
+}
+
+.commercials-portfolio-grid .portfolio-overlay p {
+  margin: 0;
+  max-width: 28ch;
+  font-size: clamp(0.86rem, 0.78rem + 0.25vw, 1rem);
+  line-height: 1.35;
+}
+
+.commercials-portfolio-grid .portfolio-item:hover img,
+.commercials-portfolio-grid .portfolio-item:focus-within img {
+  transform: scale(1.05);
+}
+
+.commercials-portfolio-grid .portfolio-item:hover .portfolio-tags,
+.commercials-portfolio-grid .portfolio-item:focus-within .portfolio-tags {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.commercials-portfolio-grid .portfolio-item:hover .portfolio-overlay,
+.commercials-portfolio-grid .portfolio-item:focus-within .portfolio-overlay {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .commercials-cta-box {
@@ -774,6 +940,12 @@ body.menu-open {
   font-weight: 700;
 }
 
+.commercials-cta-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .commercials-cta-content h3 {
   margin: 0;
   font-size: clamp(2rem, 4vw, 3rem);
@@ -782,7 +954,59 @@ body.menu-open {
 }
 
 .commercials-cta-action {
-  flex: 0 0 auto;
+  margin-top: 0.9rem;
+}
+
+.commercials-cta-section .commercials-cta-box {
+  position: relative;
+  overflow: visible;
+  background: #9a5b97;
+  min-height: clamp(12.4rem, 17.5vw, 14.2rem);
+  padding-left: clamp(22.1rem, 32.5vw, 27.3rem) !important;
+}
+
+.commercials-cta-section .commercials-cta-media {
+  position: absolute;
+  left: clamp(0.4rem, 1.6vw, 1.2rem);
+  bottom: 0rem;
+  top: -4rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.commercials-cta-section .commercials-cta-media img {
+  width: auto;
+  height: clamp(14rem, 25vw, 24rem);
+  max-width: none;
+  border-radius: 0;
+}
+
+.commercials-cta-section .commercials-cta-content {
+  position: absolute;
+  left: clamp(17rem, 25vw, 21rem);
+  right: clamp(1.2rem, 3vw, 2.4rem);
+  top: 50%;
+  transform: translateY(-46%);
+  z-index: 2;
+  align-items: flex-start;
+}
+
+.commercials-cta-section .commercials-cta-content h4 {
+  font-size: clamp(1.9rem, 3.1vw, 3rem);
+  line-height: 0.95;
+  margin: 0 0 0.2rem;
+  font-weight: 800;
+}
+
+.commercials-cta-section .commercials-cta-content h3 {
+  font-size: clamp(2.5rem, 4.2vw, 4.1rem);
+  line-height: 0.9;
+}
+
+.commercials-cta-section .commercials-cta-action .btn {
+  background: #13a7e7;
+  border-color: #13a7e7;
+  min-width: 12rem;
 }
 
 .panebarcos-hero .page-hero-bgword {
@@ -1143,6 +1367,36 @@ body.menu-open {
     align-items: flex-start;
   }
 
+  .commercials-cta-section .commercials-cta-box {
+    padding-left: 1.6rem !important;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .commercials-cta-section .commercials-cta-media {
+    position: static;
+    align-self: center;
+    margin-bottom: 0.25rem;
+  }
+
+  .commercials-cta-section .commercials-cta-media img {
+    width: auto;
+    height: auto;
+  }
+
+  .commercials-portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .commercials-portfolio-grid .portfolio-item.top-left,
+  .commercials-portfolio-grid .portfolio-item.top-right,
+  .commercials-portfolio-grid .portfolio-item.bottom-left,
+  .commercials-portfolio-grid .portfolio-item.bottom-right {
+    grid-column: auto;
+    height: auto;
+    aspect-ratio: 16 / 13;
+  }
+
   .panebarcos-cta-box {
     flex-direction: column;
     align-items: flex-start;
@@ -1263,6 +1517,11 @@ body.menu-open {
     width: min(43vw, 13.5rem);
   }
 
+  .commercials-title-balloon {
+    width: clamp(6.4rem, 30vw, 8.3rem);
+    margin-left: 0.35rem;
+  }
+
   .panebarcos-hero .page-hero-title {
     font-size: clamp(2.7rem, 10.4vw, 4.3rem);
   }
@@ -1286,6 +1545,71 @@ body.menu-open {
 
   .commercials-cta-content h3 {
     font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
+
+  .commercials-cta-section .commercials-cta-content h4,
+  .commercials-cta-section .commercials-cta-content h3 {
+    text-align: left;
+  }
+
+  .commercials-cta-section .commercials-cta-box {
+    position: relative;
+    overflow: hidden;
+    min-height: 32rem;
+    border-radius: 1.2rem !important;
+    padding: 1.5rem 1.35rem 0 !important;
+  }
+
+  .commercials-cta-section .commercials-cta-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 0;
+    align-items: flex-start;
+    max-width: 100%;
+  }
+
+  .commercials-cta-section .commercials-cta-media {
+    position: absolute;
+    left: 70%;
+    bottom: -1px;
+    margin: 0;
+    z-index: 1;
+    transform: translateX(-50%);
+    top: 50%;
+  }
+
+  .commercials-cta-section .commercials-cta-media img {
+    width: auto;
+    height: clamp(15rem, 60vw, 20rem);
+    display: block;
+  }
+
+  .commercials-cta-section .commercials-cta-content h4 {
+    font-size: clamp(2rem, 9vw, 2.6rem);
+    line-height: 0.95;
+  }
+
+  .commercials-cta-section .commercials-cta-content h3 {
+    font-size: clamp(2.35rem, 10.8vw, 3.2rem);
+    line-height: 0.9;
+  }
+
+  .commercials-cta-section .commercials-cta-action {
+    margin-top: 0.7rem;
+  }
+
+  .commercials-cta-section .commercials-cta-action .btn {
+    min-width: 11.3rem;
+    padding-inline: 1.25rem;
+  }
+
+  .commercials-portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .commercials-portfolio-grid .portfolio-item {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 13;
   }
 }
 
@@ -1416,7 +1740,7 @@ body.menu-open {
 
 html,
 body {
-  font-family: "Sofia Sans", sans-serif;
+  font-family: "Sofia Sans", sans-serif !important;
 }
 
 
@@ -1433,3 +1757,10 @@ body {
 
 
 
+  .commercials-cta-section .commercials-cta-content {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    transform: none;
+  }
