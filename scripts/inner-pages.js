@@ -589,6 +589,50 @@
 })();
 
 (function () {
+  const grid = document.getElementById("portfolioCatalogGrid");
+  const buttons = document.querySelectorAll(".portfolio-catalog-filters .portfolio-filter-btn");
+  if (!grid || !buttons.length) return;
+
+  const cards = grid.querySelectorAll(".portfolio-catalog-card");
+  if (!cards.length) return;
+
+  const state = {
+    category: "all",
+    type: "all",
+  };
+
+  function applyFilter() {
+    cards.forEach(function (card) {
+      const category = (card.dataset.category || "").toLowerCase();
+      const type = (card.dataset.type || "").toLowerCase();
+
+      const categoryMatch = state.category === "all" || category === state.category;
+      const typeMatch = state.type === "all" || type === state.type;
+      const visible = categoryMatch && typeMatch;
+      card.classList.toggle("is-hidden", !visible);
+    });
+  }
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const group = (btn.dataset.group || "").toLowerCase();
+      const value = (btn.dataset.value || "all").toLowerCase();
+      if (!group || !Object.prototype.hasOwnProperty.call(state, group)) return;
+
+      buttons.forEach(function (x) {
+        if ((x.dataset.group || "").toLowerCase() === group) {
+          x.classList.toggle("is-active", x === btn);
+        }
+      });
+      state[group] = value;
+      applyFilter();
+    });
+  });
+
+  applyFilter();
+})();
+
+(function () {
   const reveals = document.querySelectorAll(".commercials-title-reveal");
   if (!reveals.length) return;
 

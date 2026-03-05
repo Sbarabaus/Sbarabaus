@@ -46,9 +46,137 @@
       </div>
     </section>
 
-    <section class="page-main">
-      <div class="inner">
-        <h2>I nostri lavori in evidenza</h2>
+    <section class="portfolio-light py-5">
+      <div class="container-xxl portfolio-light-wrap">
+        <div class="portfolio-catalog-head">
+          <h2>PORTFOLIO</h2>
+          <p>SELECTED WORKS</p>
+        </div>
+
+        <div class="portfolio-catalog-divider"></div>
+
+        <div class="portfolio-originals-highlight" aria-label="Originals in evidenza">
+          <div class="portfolio-originals-head">
+            <h3>ORIGINALS IN EVIDENZA</h3>
+            <p>Contenuto editoriale</p>
+          </div>
+          <div class="portfolio-originals-grid">
+            <article class="portfolio-originals-card">
+              <img src="images/caramelle.jpg" alt="Caramelle">
+              <div class="portfolio-originals-overlay">
+                <h4>Caramelle</h4>
+                <p>Originals</p>
+              </div>
+            </article>
+            <article class="portfolio-originals-card">
+              <img src="images/marta-e-la-morte.jpg" alt="Marta e la morte">
+              <div class="portfolio-originals-overlay">
+                <h4>Marta e la morte</h4>
+                <p>Originals</p>
+              </div>
+            </article>
+            <article class="portfolio-originals-card">
+              <img src="images/nostoppingnora.jpg" alt="NostoppingNora">
+              <div class="portfolio-originals-overlay">
+                <h4>#NostoppingNora</h4>
+                <p>Originals</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="portfolio-catalog-divider"></div>
+
+        <div class="portfolio-catalog-filters" aria-label="Filtri portfolio">
+          <div class="portfolio-filter-group">
+            <span class="portfolio-filter-label">CATEGORIA</span>
+            <button class="portfolio-filter-btn is-active" type="button" data-group="category" data-value="all">Tutti</button>
+            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="commercial">Commercial</button>
+            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="fashion">Fashion</button>
+            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="music">Music</button>
+            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="sport">Sport</button>
+            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="art">Art</button>
+          </div>
+
+          <div class="portfolio-filter-group">
+            <span class="portfolio-filter-label">TIPO</span>
+            <button class="portfolio-filter-btn is-active" type="button" data-group="type" data-value="all">Tutti</button>
+            <button class="portfolio-filter-btn" type="button" data-group="type" data-value="video">Video</button>
+            <button class="portfolio-filter-btn" type="button" data-group="type" data-value="photo">Photo</button>
+          </div>
+        </div>
+
+        <div class="portfolio-catalog-divider"></div>
+
+        <div id="portfolioCatalogGrid" class="portfolio-catalog-grid">
+          <article class="portfolio-catalog-card" data-category="commercial" data-type="video">
+            <img src="https://picsum.photos/seed/portfolio-cat-1/900/560" alt="Nike Urban Motion">
+            <div class="portfolio-catalog-overlay">
+              <h3>Urban Motion</h3>
+              <p>Commercial</p>
+            </div>
+          </article>
+
+          <article class="portfolio-catalog-card" data-category="fashion" data-type="video">
+            <img src="https://picsum.photos/seed/portfolio-cat-2/900/560" alt="Gucci Glass Cathedral">
+            <div class="portfolio-catalog-overlay">
+              <h3>Glass Cathedral</h3>
+              <p>Fashion</p>
+            </div>
+          </article>
+
+          <article class="portfolio-catalog-card" data-category="music" data-type="video">
+            <img src="https://picsum.photos/seed/portfolio-cat-3/900/560" alt="Spotify Neon Stage">
+            <div class="portfolio-catalog-overlay">
+              <h3>Neon Stage</h3>
+              <p>Music</p>
+            </div>
+          </article>
+
+          <article class="portfolio-catalog-card" data-category="sport" data-type="photo">
+            <img src="https://picsum.photos/seed/portfolio-cat-4/900/560" alt="GoPro Wave Rider">
+            <div class="portfolio-catalog-overlay">
+              <h3>Wave Rider</h3>
+              <p>Sport</p>
+            </div>
+          </article>
+
+          <article class="portfolio-catalog-card" data-category="art" data-type="photo">
+            <img src="https://picsum.photos/seed/portfolio-cat-5/900/560" alt="Adobe Light Streams">
+            <div class="portfolio-catalog-overlay">
+              <h3>Light Streams</h3>
+              <p>Art</p>
+            </div>
+          </article>
+
+          <article class="portfolio-catalog-card" data-category="commercial" data-type="video">
+            <img src="https://picsum.photos/seed/portfolio-cat-6/900/560" alt="Porsche Night Drive">
+            <div class="portfolio-catalog-overlay">
+              <h3>Night Drive</h3>
+              <p>Commercial</p>
+            </div>
+          </article>
+
+          <article class="portfolio-catalog-card" data-category="sport" data-type="photo">
+            <img src="https://picsum.photos/seed/portfolio-cat-7/900/560" alt="Patagonia Summit Dawn">
+            <div class="portfolio-catalog-overlay">
+              <h3>Summit Dawn</h3>
+              <p>Sport</p>
+            </div>
+          </article>
+
+          <article class="portfolio-catalog-card" data-category="art" data-type="video">
+            <img src="https://picsum.photos/seed/portfolio-cat-8/900/560" alt="Michelin Fire & Flavor">
+            <div class="portfolio-catalog-overlay">
+              <h3>Fire &amp; Flavor</h3>
+              <p>Art</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="text-center mt-4">
+          <button class="portfolio-load-more" type="button">CARICA ALTRO</button>
+        </div>
       </div>
     </section>
   </main>
