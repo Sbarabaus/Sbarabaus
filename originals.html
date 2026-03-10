@@ -29,12 +29,12 @@
 
   <div data-menu-partial="partials/menu-overlay.html"></div>
 
-  <main>
-    <section class="page-hero">
+  <main id="originalsScrollBg" class="originals-scroll-bg">
+    <section class="page-hero originals-hero">
       <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
         <source src="images/1021768637.mp4" type="video/mp4">
       </video>
-      <div class="page-hero-content">
+      <div class="originals-hero-layout">
         <div class="page-hero-text">
           <p class="page-hero-bgword">PRODUZIONI INDIPENDENTI</p>
           <h1 class="page-hero-title">ORIGINALS</h1>
@@ -46,9 +46,96 @@
       </div>
     </section>
 
-    <section class="page-main">
+    <section class="page-main originals-page-main">
       <div class="inner">
-        <h2>Universi originali Panebarco</h2>
+        <section class="originals-intro">
+          <p class="originals-kicker">Originals</p>
+          <h2>Universi originali Panebarco</h2>
+          <p>
+            Diamo vita a contenuti editoriali proprietari: personaggi, mondi e storie che nascono
+            dentro lo studio e crescono tra serialita, corti, social e formati speciali.
+          </p>
+        </section>
+
+        <section class="originals-pillars" aria-label="Pilastri Originals">
+          <div class="originals-pillars-grid">
+            <article class="originals-pillar-box">
+              <h3>Visione editoriale</h3>
+              <p>Ogni progetto parte da una linea narrativa chiara e da un'identita riconoscibile.</p>
+            </article>
+            <article class="originals-pillar-box">
+              <h3>IP proprietarie</h3>
+              <p>Costruiamo format originali pensati per vivere su piattaforme e pubblici diversi.</p>
+            </article>
+            <article class="originals-pillar-box">
+              <h3>Produzione integrata</h3>
+              <p>Dallo sviluppo visivo al delivery finale, tutto il processo e gestito in casa.</p>
+            </article>
+            <article class="originals-pillar-box">
+              <h3>Sperimentazione</h3>
+              <p>Testiamo linguaggi, tecniche e workflow per evolvere costantemente i contenuti.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="originals-showcase" aria-label="Originals in evidenza">
+          <div class="originals-showcase-head">
+            <h3>In evidenza</h3>
+            <div class="originals-slider-nav">
+              <button id="originalsSliderPrev" class="originals-slider-btn" type="button" aria-label="Slide precedente">
+                <i class="bi bi-arrow-left"></i>
+              </button>
+              <button id="originalsSliderNext" class="originals-slider-btn" type="button" aria-label="Slide successiva">
+                <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="originals-slider-frame">
+            <div id="originalsPeekSlider" class="originals-peek-slider">
+              <article class="originals-slide">
+                <img src="images/caramelle.jpg" alt="Caramelle">
+                <div class="originals-slide-overlay">
+                  <h4>Caramelle</h4>
+                  <p>Serie originale</p>
+                </div>
+              </article>
+              <article class="originals-slide">
+                <img src="images/marta-e-la-morte.jpg" alt="Marta e la morte">
+                <div class="originals-slide-overlay">
+                  <h4>Marta e la morte</h4>
+                  <p>Corto originale</p>
+                </div>
+              </article>
+              <article class="originals-slide">
+                <img src="images/nostoppingnora.jpg" alt="NostoppingNora">
+                <div class="originals-slide-overlay">
+                  <h4>#NostoppingNora</h4>
+                  <p>Format social</p>
+                </div>
+              </article>
+              <article class="originals-slide">
+                <img src="images/caramelle.jpg" alt="Nuovo progetto Originals">
+                <div class="originals-slide-overlay">
+                  <h4>Nuovo progetto</h4>
+                  <p>Work in progress</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="originals-dual-cta" aria-label="Call to action Originals">
+          <article class="originals-cta-card originals-cta-card--left">
+            <h3>Vuoi distribuire un nostro titolo?</h3>
+            <p>Scopri i format disponibili e i materiali editoriali dedicati ai partner.</p>
+            <a href="contatti.html" class="btn btn-primary btn-pill">Partnership</a>
+          </article>
+          <article class="originals-cta-card originals-cta-card--right">
+            <h3>Hai in mente una co-produzione?</h3>
+            <p>Parliamo di concept, sviluppo e piano di produzione del prossimo Originals.</p>
+            <a href="contatti.html" class="btn btn-warning text-dark btn-pill">Scrivici</a>
+          </article>
+        </section>
       </div>
     </section>
   </main>

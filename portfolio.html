@@ -53,6 +53,14 @@
           <p>SELECTED WORKS</p>
         </div>
 
+        <div class="portfolio-catalog-view" aria-label="Controlli vista griglia">
+          <span class="portfolio-catalog-view-label">Vista</span>
+          <div class="portfolio-view-toggle" role="group" aria-label="Seleziona vista portfolio">
+            <button class="portfolio-view-btn is-active" type="button" data-portfolio-view="large" aria-pressed="true">Grande</button>
+            <button class="portfolio-view-btn" type="button" data-portfolio-view="compact" aria-pressed="false">Compatta</button>
+          </div>
+        </div>
+
         <div class="portfolio-catalog-divider"></div>
 
         <div class="portfolio-originals-highlight" aria-label="Originals in evidenza">
@@ -108,7 +116,7 @@
 
         <div class="portfolio-catalog-divider"></div>
 
-        <div id="portfolioCatalogGrid" class="portfolio-catalog-grid">
+        <div id="portfolioCatalogGrid" class="portfolio-catalog-grid is-view-large">
           <article class="portfolio-catalog-card" data-category="commercial" data-type="video">
             <img src="https://picsum.photos/seed/portfolio-cat-1/900/560" alt="Nike Urban Motion">
             <div class="portfolio-catalog-overlay">
