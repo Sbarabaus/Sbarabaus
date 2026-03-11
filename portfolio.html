@@ -40,147 +40,157 @@
           <h1 class="page-hero-title">PORTFOLIO</h1>
           <p class="page-hero-subtitle">Progetti, storie e mondi costruiti fotogramma per fotogramma</p>
         </div>
-        <div class="page-hero-media">
-          <img src="images/testata img.png" alt="Portfolio">
-        </div>
       </div>
     </section>
 
     <section class="portfolio-light py-5">
       <div class="container-xxl portfolio-light-wrap">
-        <div class="portfolio-catalog-head">
-          <h2>PORTFOLIO</h2>
-          <p>SELECTED WORKS</p>
-        </div>
-
-        <div class="portfolio-catalog-view" aria-label="Controlli vista griglia">
-          <span class="portfolio-catalog-view-label">Vista</span>
-          <div class="portfolio-view-toggle" role="group" aria-label="Seleziona vista portfolio">
-            <button class="portfolio-view-btn is-active" type="button" data-portfolio-view="large" aria-pressed="true">Grande</button>
-            <button class="portfolio-view-btn" type="button" data-portfolio-view="compact" aria-pressed="false">Compatta</button>
-          </div>
-        </div>
+        <section class="originals-intro portfolio-intro mb-5">
+          <p class="originals-kicker">Portfolio</p>
+          <h2>Progetti che parlano per immagini</h2>
+          <p>
+            Una selezione di lavori tra animazione, regia, VFX e post-produzione:
+            contenuti pensati per essere chiari, visivi e subito navigabili.
+          </p>
+        </section>
 
         <div class="portfolio-catalog-divider"></div>
 
-        <div class="portfolio-originals-highlight" aria-label="Originals in evidenza">
-          <div class="portfolio-originals-head">
-            <h3>ORIGINALS IN EVIDENZA</h3>
-            <p>Contenuto editoriale</p>
+        <div class="originals-slider-shell" aria-label="Originals in evidenza">
+          <button id="originalsSliderPrev" class="originals-slider-btn originals-slider-btn--prev" type="button" aria-label="Slide precedente">
+            <i class="bi bi-arrow-left"></i>
+          </button>
+          <div class="originals-slider-frame">
+            <div id="originalsPeekSlider" class="originals-peek-slider">
+              <article class="originals-slide">
+                <img src="images/caramelle.jpg" alt="Caramelle">
+                <div class="originals-slide-overlay">
+                  <h4>Caramelle</h4>
+                  <p>Serie animate</p>
+                </div>
+              </article>
+              <article class="originals-slide">
+                <img src="images/marta-e-la-morte.jpg" alt="Marta e la morte">
+                <div class="originals-slide-overlay">
+                  <h4>Marta e la morte</h4>
+                  <p>Cortometraggi</p>
+                </div>
+              </article>
+              <article class="originals-slide">
+                <img src="images/nostoppingnora.jpg" alt="Nostopping Nora">
+                <div class="originals-slide-overlay">
+                  <h4>#NostoppingNora</h4>
+                  <p>Progetti crossmediali</p>
+                </div>
+              </article>
+              <article class="originals-slide">
+                <img src="images/caramelle.jpg" alt="Nuovo Originals">
+                <div class="originals-slide-overlay">
+                  <h4>Nuovo Originals</h4>
+                  <p>Lungometraggi</p>
+                </div>
+              </article>
+            </div>
           </div>
-          <div class="portfolio-originals-grid">
-            <article class="portfolio-originals-card">
-              <img src="images/caramelle.jpg" alt="Caramelle">
-              <div class="portfolio-originals-overlay">
-                <h4>Caramelle</h4>
-                <p>Originals</p>
-              </div>
-            </article>
-            <article class="portfolio-originals-card">
-              <img src="images/marta-e-la-morte.jpg" alt="Marta e la morte">
-              <div class="portfolio-originals-overlay">
-                <h4>Marta e la morte</h4>
-                <p>Originals</p>
-              </div>
-            </article>
-            <article class="portfolio-originals-card">
-              <img src="images/nostoppingnora.jpg" alt="NostoppingNora">
-              <div class="portfolio-originals-overlay">
-                <h4>#NostoppingNora</h4>
-                <p>Originals</p>
-              </div>
-            </article>
-          </div>
+          <button id="originalsSliderNext" class="originals-slider-btn originals-slider-btn--next" type="button" aria-label="Slide successiva">
+            <i class="bi bi-arrow-right"></i>
+          </button>
         </div>
 
         <div class="portfolio-catalog-divider"></div>
 
         <div class="portfolio-catalog-filters" aria-label="Filtri portfolio">
-          <div class="portfolio-filter-group">
+          <div class="portfolio-filter-group" data-filter-group="category">
             <span class="portfolio-filter-label">CATEGORIA</span>
-            <button class="portfolio-filter-btn is-active" type="button" data-group="category" data-value="all">Tutti</button>
-            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="commercial">Commercial</button>
-            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="fashion">Fashion</button>
-            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="music">Music</button>
-            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="sport">Sport</button>
-            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="art">Art</button>
+            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="originals" aria-pressed="false">Originals</button>
+            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="commercials" aria-pressed="false">Commercials</button>
+            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="post-produzione" aria-pressed="false">Post-produzione</button>
+            <button class="portfolio-filter-btn" type="button" data-group="category" data-value="service" aria-pressed="false">Service</button>
           </div>
 
-          <div class="portfolio-filter-group">
-            <span class="portfolio-filter-label">TIPO</span>
-            <button class="portfolio-filter-btn is-active" type="button" data-group="type" data-value="all">Tutti</button>
-            <button class="portfolio-filter-btn" type="button" data-group="type" data-value="video">Video</button>
-            <button class="portfolio-filter-btn" type="button" data-group="type" data-value="photo">Photo</button>
+          <div class="portfolio-filter-group" data-filter-group="type">
+            <span class="portfolio-filter-label">TIPOLOGIA</span>
+            <button class="portfolio-filter-btn" type="button" data-group="type" data-value="story-driven" aria-pressed="false">Story-driven</button>
+            <button class="portfolio-filter-btn" type="button" data-group="type" data-value="divulgativo" aria-pressed="false">Divulgativo</button>
+            <button class="portfolio-filter-btn" type="button" data-group="type" data-value="promozionale" aria-pressed="false">Promozionale</button>
+            <button class="portfolio-filter-btn" type="button" data-group="type" data-value="emozionale" aria-pressed="false">Emozionale</button>
+            <button class="portfolio-filter-btn" type="button" data-group="type" data-value="entertainment" aria-pressed="false">Entertainment</button>
           </div>
+
+          <button class="portfolio-filter-reset" type="button" data-filter-reset hidden>
+            <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i> Reset filtri
+          </button>
         </div>
 
         <div class="portfolio-catalog-divider"></div>
 
         <div id="portfolioCatalogGrid" class="portfolio-catalog-grid is-view-large">
-          <article class="portfolio-catalog-card" data-category="commercial" data-type="video">
+          <article class="portfolio-catalog-card" data-category="commercials" data-type="story-driven">
             <img src="https://picsum.photos/seed/portfolio-cat-1/900/560" alt="Nike Urban Motion">
             <div class="portfolio-catalog-overlay">
               <h3>Urban Motion</h3>
-              <p>Commercial</p>
+              <p>Commercials</p>
             </div>
           </article>
 
-          <article class="portfolio-catalog-card" data-category="fashion" data-type="video">
+          <article class="portfolio-catalog-card" data-category="service" data-type="divulgativo">
             <img src="https://picsum.photos/seed/portfolio-cat-2/900/560" alt="Gucci Glass Cathedral">
             <div class="portfolio-catalog-overlay">
               <h3>Glass Cathedral</h3>
-              <p>Fashion</p>
+              <p>Service</p>
             </div>
           </article>
 
-          <article class="portfolio-catalog-card" data-category="music" data-type="video">
+          <article class="portfolio-catalog-card" data-category="originals" data-type="entertainment">
             <img src="https://picsum.photos/seed/portfolio-cat-3/900/560" alt="Spotify Neon Stage">
             <div class="portfolio-catalog-overlay">
               <h3>Neon Stage</h3>
-              <p>Music</p>
+              <p>Originals</p>
             </div>
           </article>
 
-          <article class="portfolio-catalog-card" data-category="sport" data-type="photo">
+          <article class="portfolio-catalog-card" data-category="post-produzione" data-type="promozionale">
             <img src="https://picsum.photos/seed/portfolio-cat-4/900/560" alt="GoPro Wave Rider">
             <div class="portfolio-catalog-overlay">
               <h3>Wave Rider</h3>
-              <p>Sport</p>
+              <p>Post-produzione</p>
             </div>
           </article>
 
-          <article class="portfolio-catalog-card" data-category="art" data-type="photo">
+          <article class="portfolio-catalog-card" data-category="service" data-type="emozionale">
             <img src="https://picsum.photos/seed/portfolio-cat-5/900/560" alt="Adobe Light Streams">
             <div class="portfolio-catalog-overlay">
               <h3>Light Streams</h3>
-              <p>Art</p>
+              <p>Service</p>
             </div>
           </article>
 
-          <article class="portfolio-catalog-card" data-category="commercial" data-type="video">
+          <article class="portfolio-catalog-card" data-category="commercials" data-type="promozionale">
             <img src="https://picsum.photos/seed/portfolio-cat-6/900/560" alt="Porsche Night Drive">
             <div class="portfolio-catalog-overlay">
               <h3>Night Drive</h3>
-              <p>Commercial</p>
+              <p>Commercials</p>
             </div>
           </article>
 
-          <article class="portfolio-catalog-card" data-category="sport" data-type="photo">
+          <article class="portfolio-catalog-card" data-category="originals" data-type="story-driven">
             <img src="https://picsum.photos/seed/portfolio-cat-7/900/560" alt="Patagonia Summit Dawn">
             <div class="portfolio-catalog-overlay">
               <h3>Summit Dawn</h3>
-              <p>Sport</p>
+              <p>Originals</p>
             </div>
           </article>
 
-          <article class="portfolio-catalog-card" data-category="art" data-type="video">
+          <article class="portfolio-catalog-card" data-category="post-produzione" data-type="divulgativo">
             <img src="https://picsum.photos/seed/portfolio-cat-8/900/560" alt="Michelin Fire & Flavor">
             <div class="portfolio-catalog-overlay">
               <h3>Fire &amp; Flavor</h3>
-              <p>Art</p>
+              <p>Post-produzione</p>
             </div>
           </article>
         </div>
+
+        <p id="portfolioNoResults" class="portfolio-no-results" hidden>Nessun progetto trovato con i filtri selezionati.</p>
 
         <div class="text-center mt-4">
           <button class="portfolio-load-more" type="button">CARICA ALTRO</button>

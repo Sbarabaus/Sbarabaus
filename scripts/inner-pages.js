@@ -590,7 +590,9 @@
 
 (function () {
   const grid = document.getElementById("portfolioCatalogGrid");
-  const buttons = document.querySelectorAll(".portfolio-catalog-filters .portfolio-filter-btn");
+  const buttons = document.querySelectorAll(".portfolio-catalog-filters .portfolio-filter-btn[data-group]");
+  const resetBtn = document.querySelector(".portfolio-catalog-filters [data-filter-reset]");
+  const noResultsEl = document.getElementById("portfolioNoResults");
   if (!grid || !buttons.length) return;
 
   const cards = grid.querySelectorAll(".portfolio-catalog-card");
@@ -601,7 +603,25 @@
     type: "all",
   };
 
+  function syncGroupButtons(group) {
+    buttons.forEach(function (btn) {
+      const btnGroup = (btn.dataset.group || "").toLowerCase();
+      if (btnGroup !== group) return;
+      const btnValue = (btn.dataset.value || "").toLowerCase();
+      const active = btnValue === state[group];
+      btn.classList.toggle("is-active", active);
+      btn.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  function updateResetVisibility() {
+    if (!resetBtn) return;
+    const hasActiveFilters = state.category !== "all" || state.type !== "all";
+    resetBtn.hidden = !hasActiveFilters;
+  }
+
   function applyFilter() {
+    let visibleCount = 0;
     cards.forEach(function (card) {
       const category = (card.dataset.category || "").toLowerCase();
       const type = (card.dataset.type || "").toLowerCase();
@@ -610,25 +630,41 @@
       const typeMatch = state.type === "all" || type === state.type;
       const visible = categoryMatch && typeMatch;
       card.classList.toggle("is-hidden", !visible);
+      if (visible) visibleCount += 1;
     });
+
+    if (noResultsEl) {
+      noResultsEl.hidden = visibleCount > 0;
+    }
+    updateResetVisibility();
+  }
+
+  function resetFilters() {
+    state.category = "all";
+    state.type = "all";
+    syncGroupButtons("category");
+    syncGroupButtons("type");
+    applyFilter();
   }
 
   buttons.forEach(function (btn) {
     btn.addEventListener("click", function () {
       const group = (btn.dataset.group || "").toLowerCase();
-      const value = (btn.dataset.value || "all").toLowerCase();
+      const value = (btn.dataset.value || "").toLowerCase();
       if (!group || !Object.prototype.hasOwnProperty.call(state, group)) return;
-
-      buttons.forEach(function (x) {
-        if ((x.dataset.group || "").toLowerCase() === group) {
-          x.classList.toggle("is-active", x === btn);
-        }
-      });
-      state[group] = value;
+      if (!value) return;
+      state[group] = state[group] === value ? "all" : value;
+      syncGroupButtons(group);
       applyFilter();
     });
   });
 
+  if (resetBtn) {
+    resetBtn.addEventListener("click", resetFilters);
+  }
+
+  syncGroupButtons("category");
+  syncGroupButtons("type");
   applyFilter();
 })();
 
@@ -733,19 +769,159 @@
   const nextBtn = document.getElementById("originalsSliderNext");
   if (!slider || !prevBtn || !nextBtn) return;
 
-  function getScrollStep() {
-    const firstSlide = slider.querySelector(".originals-slide");
-    if (!firstSlide) return slider.clientWidth * 0.85;
-    const gap = parseFloat(window.getComputedStyle(slider).columnGap || window.getComputedStyle(slider).gap || "0");
-    return firstSlide.getBoundingClientRect().width + gap;
+  const slides = Array.from(slider.querySelectorAll(".originals-slide"));
+  if (!slides.length) return;
+
+  const shell = slider.closest(".originals-slider-shell");
+  const frame = slider.closest(".originals-slider-frame") || slider;
+  let activeIndex = 0;
+  let isPointerDown = false;
+  let startX = 0;
+  let startY = 0;
+  let deltaX = 0;
+  let deltaY = 0;
+  let gestureLocked = false;
+  let isHorizontalGesture = false;
+
+  function mod(index, length) {
+    return ((index % length) + length) % length;
+  }
+
+  function setActive(nextIndex) {
+    activeIndex = mod(nextIndex, slides.length);
+
+    slides.forEach(function (slide, index) {
+      slide.classList.remove("is-active", "is-prev", "is-next", "is-hidden-left", "is-hidden-right");
+
+      if (index === activeIndex) {
+        slide.classList.add("is-active");
+        slide.setAttribute("aria-hidden", "false");
+        return;
+      }
+
+      slide.setAttribute("aria-hidden", "true");
+
+      const forwardDistance = mod(index - activeIndex, slides.length);
+      const backwardDistance = mod(activeIndex - index, slides.length);
+
+      if (forwardDistance === 1) {
+        slide.classList.add("is-next");
+        return;
+      }
+
+      if (backwardDistance === 1) {
+        slide.classList.add("is-prev");
+        return;
+      }
+
+      if (forwardDistance < backwardDistance) {
+        slide.classList.add("is-hidden-right");
+      } else {
+        slide.classList.add("is-hidden-left");
+      }
+    });
   }
 
   prevBtn.addEventListener("click", function () {
-    slider.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
+    setActive(activeIndex - 1);
   });
 
   nextBtn.addEventListener("click", function () {
-    slider.scrollBy({ left: getScrollStep(), behavior: "smooth" });
+    setActive(activeIndex + 1);
   });
+
+  if (shell) {
+    shell.tabIndex = 0;
+    shell.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        setActive(activeIndex - 1);
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        setActive(activeIndex + 1);
+      }
+    });
+  }
+
+  function resetGestureState() {
+    isPointerDown = false;
+    startX = 0;
+    startY = 0;
+    deltaX = 0;
+    deltaY = 0;
+    gestureLocked = false;
+    isHorizontalGesture = false;
+    frame.classList.remove("is-dragging");
+  }
+
+  function onPointerDown(event) {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    isPointerDown = true;
+    startX = event.clientX;
+    startY = event.clientY;
+    deltaX = 0;
+    deltaY = 0;
+    gestureLocked = false;
+    isHorizontalGesture = false;
+    frame.classList.add("is-dragging");
+
+    if (typeof frame.setPointerCapture === "function") {
+      try {
+        frame.setPointerCapture(event.pointerId);
+      } catch (error) {
+        // noop
+      }
+    }
+  }
+
+  function onPointerMove(event) {
+    if (!isPointerDown) return;
+
+    deltaX = event.clientX - startX;
+    deltaY = event.clientY - startY;
+
+    if (!gestureLocked) {
+      if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) {
+        gestureLocked = true;
+        isHorizontalGesture = Math.abs(deltaX) > Math.abs(deltaY);
+      }
+    }
+
+    if (isHorizontalGesture) {
+      event.preventDefault();
+    }
+  }
+
+  function onPointerEnd(event) {
+    if (!isPointerDown) return;
+
+    const threshold = Math.max(42, frame.clientWidth * 0.08);
+
+    if (isHorizontalGesture && Math.abs(deltaX) >= threshold) {
+      if (deltaX < 0) {
+        setActive(activeIndex + 1);
+      } else {
+        setActive(activeIndex - 1);
+      }
+    }
+
+    if (typeof frame.releasePointerCapture === "function") {
+      try {
+        frame.releasePointerCapture(event.pointerId);
+      } catch (error) {
+        // noop
+      }
+    }
+
+    resetGestureState();
+  }
+
+  frame.addEventListener("pointerdown", onPointerDown);
+  frame.addEventListener("pointermove", onPointerMove, { passive: false });
+  frame.addEventListener("pointerup", onPointerEnd);
+  frame.addEventListener("pointercancel", resetGestureState);
+
+  setActive(0);
 })();
 
