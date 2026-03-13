@@ -295,7 +295,6 @@ body.menu-open {
 .page-hero-text {
   position: relative;
   color: #fff;
-  max-width: min(58rem, 60vw);
   z-index: 1;
 }
 
@@ -411,12 +410,12 @@ body.menu-open {
   margin-bottom: 10vh;
 }
 
-.originals-intro {
+.page-intro {
   max-width: 64rem;
   margin: 0 auto;
 }
 
-.originals-kicker {
+.page-intro-kicker {
   margin: 0 0 0.35rem;
   text-transform: uppercase;
   letter-spacing: 0.11em;
@@ -425,14 +424,14 @@ body.menu-open {
   opacity: 0.78;
 }
 
-.originals-intro h2 {
+.page-intro-title {
   margin: 0 0 0.8rem;
   font-size: clamp(2.1rem, 4.3vw, 3.7rem);
   line-height: 1.03;
   font-weight: 900;
 }
 
-.originals-intro p {
+.page-intro-text {
   margin: 0;
   font-size: clamp(1.05rem, 1.35vw, 1.3rem);
   line-height: 1.35;
@@ -1802,10 +1801,10 @@ body.menu-open {
 }
 
 .portfolio-catalog-filters {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.15rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 1rem 1.5rem;
   position: sticky;
   top: clamp(0.7rem, 1.4vw, 1.1rem);
   z-index: 15;
@@ -1820,7 +1819,8 @@ body.menu-open {
 .portfolio-filter-group {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
+  align-content: flex-start;
   gap: 0.55rem;
   width: 100%;
 }
@@ -1828,8 +1828,10 @@ body.menu-open {
 .portfolio-filter-reset {
   border: 0;
   background: transparent;
-  color: #93a8ca;
+  color: #5f7698;
   display: inline-flex;
+  grid-column: 1 / -1;
+  justify-self: flex-start;
   align-items: center;
   gap: 0.45rem;
   padding: 0.15rem 0.1rem;
@@ -1840,7 +1842,7 @@ body.menu-open {
 }
 
 .portfolio-filter-reset:hover {
-  color: #d4e1f6;
+  color: #243c61;
 }
 
 .portfolio-filter-reset[hidden] {
@@ -1862,28 +1864,37 @@ body.menu-open {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 700;
-  color: #8ea3c5;
+  color: #4f6587;
 }
 
 .portfolio-catalog-filters .portfolio-filter-btn {
-  border: 1px solid #0fa8ea;;
-  background: rgba(255, 255, 255, 0.1);
-  color: #8ea4c7;
+  border: 1px solid #9fb8da;
+  background: #eef5ff;
+  color: #233a5e;
   border-radius: 999px;
   padding: 0.55rem 1.1rem;
   font-size: 1.02rem;
   font-weight: 700;
+  transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
 }
 
 .portfolio-catalog-filters .portfolio-filter-btn.is-active {
-  background: #f6a823;
-  color: #111;
-  border-color: #f6a823;
+  background: #0dcaf0;
+  color: #05222b;
+  border-color: #0dcaf0;
+  box-shadow: 0 0 0 2px rgba(13, 202, 240, 0.35);
 }
 
 .portfolio-catalog-filters .portfolio-filter-btn:hover {
-  color: #dce8fb;
-  border-color: rgba(255, 255, 255, 0.16);
+  background: #dbeaff;
+  color: #102545;
+  border-color: #6ea8fe;
+  box-shadow: 0 0 0 2px rgba(110, 168, 254, 0.28);
+}
+
+.portfolio-catalog-filters .portfolio-filter-btn:focus-visible {
+  outline: 2px solid #0dcaf0;
+  outline-offset: 2px;
 }
 
 .portfolio-catalog-grid {
@@ -2790,8 +2801,9 @@ body.menu-open {
   }
 
   .portfolio-catalog-filters {
+    grid-template-columns: 1fr;
     align-items: flex-start;
-    gap: 0.7rem 1rem;
+    gap: 0.7rem;
     padding: 0.6rem 0.75rem;
   }
 
