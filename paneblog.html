@@ -40,25 +40,152 @@
           <h1 class="page-hero-title">PANEBLOG</h1>
           <p class="page-hero-subtitle">Pensieri che ci frullano in testa.</p>
         </div>
-        <div class="page-hero-media">
-          <img src="images/testata img.png" alt="Paneblog">
-        </div>
       </div>
     </section>
-    <section class="page-main global-page-intro">
+    <section class="page-main paneblog-main">
       <div class="inner">
-        <section class="page-intro">
-          <h2 class="page-intro-title">Lorem ipsum dolor sit amet</h2>
+        <section class="page-intro paneblog-page-intro">
+          <div class="paneblog-title-wrap paneblog-title-wrap--intro">
+            <h2 class="paneblog-section-title">Diario di viaggio</h2>
+            <img class="paneblog-title-sticker" src="images/pensieri che ci frullano in testa.png" alt="" aria-hidden="true">
+          </div>
           <p class="page-intro-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
+            Un luogo piu editoriale del sito: flash news, dietro le quinte, note di produzione e storie raccolte lungo il viaggio.
           </p>
         </section>
-      </div>
-    </section>
 
-    <section class="page-main">
-      <div class="inner">
-        <h2>Pensieri che diventano storie</h2>
+        <section class="paneblog-chat-section">
+          <div class="paneblog-chat-wrap">
+            <div class="chat-pop paneblog-chat-pop" role="region" aria-label="Anteprima chat Paneblog">
+              <div class="chat-header">
+                <span id="paneblogChatDate" class="chat-date">18/03/2026</span>
+                <div class="chat-fixed">
+                  <span class="chat-chip">che fate?</span>
+                  <span class="chat-avatar chat-avatar--fixed">
+                    <img src="https://picsum.photos/seed/paneblog-chat-fixed/140/140" alt="Avatar fisso">
+                  </span>
+                </div>
+              </div>
+              <div class="chat-message-row">
+                <span class="chat-avatar chat-avatar--slider">
+                  <img id="paneblogChatAvatarImg" src="https://picsum.photos/seed/paneblog-chat-1/140/140" alt="Avatar personaggio">
+                </span>
+                <div class="chat-body">
+                  <strong id="paneblogChatTitle">Titolo del messaggio</strong>
+                  <p id="paneblogChatText">
+                    Appunti veloci, link da non perdere e piccole note dal banco di lavoro.
+                  </p>
+                </div>
+              </div>
+              <div class="chat-controls">
+                <button id="paneblogChatPrev" class="chat-nav" type="button" aria-label="Messaggio precedente">
+                  <i class="bi bi-chevron-left"></i>
+                </button>
+                <div id="paneblogChatDots" class="chat-dots" aria-label="Navigazione messaggi"></div>
+                <button id="paneblogChatNext" class="chat-nav" type="button" aria-label="Messaggio successivo">
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="paneblog-catalog">
+          <div class="portfolio-catalog-filters" aria-label="Filtri paneblog">
+            <div class="portfolio-filter-group" data-filter-group="category">
+              <span class="portfolio-filter-label">ARGOMENTO</span>
+              <button class="portfolio-filter-btn" type="button" data-group="category" data-value="diario" aria-pressed="false">Diario</button>
+              <button class="portfolio-filter-btn" type="button" data-group="category" data-value="backstage" aria-pressed="false">Backstage</button>
+              <button class="portfolio-filter-btn" type="button" data-group="category" data-value="workflow" aria-pressed="false">Workflow</button>
+              <button class="portfolio-filter-btn" type="button" data-group="category" data-value="festival" aria-pressed="false">Festival</button>
+            </div>
+
+            <button class="portfolio-filter-reset" type="button" data-filter-reset hidden>
+              <i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i> Reset filtri
+            </button>
+          </div>
+
+          <div class="portfolio-catalog-divider"></div>
+
+          <div id="portfolioCatalogGrid" class="paneblog-grid">
+            <article class="card blog-card h-100" data-category="backstage" data-type="approfondimento">
+              <img src="https://picsum.photos/seed/paneblog-card-1/800/520" alt="Articolo Paneblog 1">
+              <div class="card-body">
+                <h3 class="blog-title">Dietro le quinte di una pipeline piu leggera</h3>
+                <p class="blog-date">16 Gen 2026</p>
+                <p class="blog-abstract">Come organizziamo file, passaggi e revisioni senza appesantire il processo creativo.</p>
+                <a class="blog-link" href="#">Leggi di piu <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </article>
+
+            <article class="card blog-card h-100" data-category="workflow" data-type="case-study">
+              <img src="https://picsum.photos/seed/paneblog-card-2/800/520" alt="Articolo Paneblog 2">
+              <div class="card-body">
+                <h3 class="blog-title">Dal brief al layout: anatomia di un caso reale</h3>
+                <p class="blog-date">12 Gen 2026</p>
+                <p class="blog-abstract">Un caso studio sintetico su come traduciamo input confusi in una direzione visiva solida.</p>
+                <a class="blog-link" href="#">Leggi di piu <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </article>
+
+            <article class="card blog-card h-100" data-category="festival" data-type="flash-news">
+              <img src="https://picsum.photos/seed/paneblog-card-3/800/520" alt="Articolo Paneblog 3">
+              <div class="card-body">
+                <h3 class="blog-title">Una nota veloce dal festival: tre cose viste oggi</h3>
+                <p class="blog-date">09 Gen 2026</p>
+                <p class="blog-abstract">Un aggiornamento breve ma utile, tra panel, incontri e lavori che ci hanno colpito davvero.</p>
+                <a class="blog-link" href="#">Leggi di piu <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </article>
+
+            <article class="card blog-card h-100" data-category="diario" data-type="approfondimento">
+              <img src="https://picsum.photos/seed/paneblog-card-4/800/520" alt="Articolo Paneblog 4">
+              <div class="card-body">
+                <h3 class="blog-title">Perche teniamo traccia dei dubbi di progetto</h3>
+                <p class="blog-date">05 Gen 2026</p>
+                <p class="blog-abstract">Nel diario non finiscono solo le certezze: spesso i dubbi sono il materiale piu utile.</p>
+                <a class="blog-link" href="#">Leggi di piu <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </article>
+
+            <article class="card blog-card h-100" data-category="backstage" data-type="intervista">
+              <img src="https://picsum.photos/seed/paneblog-card-5/800/520" alt="Articolo Paneblog 5">
+              <div class="card-body">
+                <h3 class="blog-title">Cinque domande a chi tiene insieme il set</h3>
+                <p class="blog-date">01 Gen 2026</p>
+                <p class="blog-abstract">Una conversazione breve e molto concreta con chi gestisce tempi, relazioni e problemi veri.</p>
+                <a class="blog-link" href="#">Leggi di piu <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </article>
+
+            <article class="card blog-card h-100" data-category="workflow" data-type="flash-news">
+              <img src="https://picsum.photos/seed/paneblog-card-6/800/520" alt="Articolo Paneblog 6">
+              <div class="card-body">
+                <h3 class="blog-title">Micro update di studio: test, shader e un paio di sorprese</h3>
+                <p class="blog-date">26 Dic 2025</p>
+                <p class="blog-abstract">Un flash rapido dal banco di lavoro, per fissare quello che sta prendendo forma.</p>
+                <a class="blog-link" href="#">Leggi di piu <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </article>
+          </div>
+
+          <p id="portfolioNoResults" class="portfolio-no-results" hidden>Nessun articolo trovato con i filtri selezionati.</p>
+        </section>
+
+        <section class="py-5 commercials-cta-section paneblog-newsletter-cta">
+          <div class="commercials-cta-box p-4 p-lg-5 rounded-4">
+            <div class="commercials-cta-media">
+              <img class="img-fluid" src="images/placeholder pg.png" alt="Personaggio newsletter">
+            </div>
+            <div class="commercials-cta-content">
+              <h4>Vuoi ricevere gli aggiornamenti?</h4>
+              <h3>ISCRIVITI ALLA NEWSLETTER.</h3>
+              <div class="commercials-cta-action">
+                <a href="contatti.html" class="btn btn-info text-white btn-pill">ISCRIVITI</a>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   </main>
@@ -110,7 +237,6 @@
   <script src="scripts/inner-pages.js"></script>
 </body>
 </html>
-
 
 
 

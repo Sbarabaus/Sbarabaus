@@ -595,7 +595,7 @@
   const noResultsEl = document.getElementById("portfolioNoResults");
   if (!grid || !buttons.length) return;
 
-  const cards = grid.querySelectorAll(".portfolio-catalog-card");
+  const cards = grid.querySelectorAll(".portfolio-catalog-card, .blog-card[data-category][data-type]");
   if (!cards.length) return;
 
   const state = {
@@ -923,5 +923,170 @@
   frame.addEventListener("pointercancel", resetGestureState);
 
   setActive(0);
+})();
+
+(function () {
+  const tabs = Array.from(document.querySelectorAll("[data-contact-form-tab]"));
+  if (!tabs.length) return;
+
+  const panels = {
+    project: document.getElementById("contactFormPanelProject"),
+    collab: document.getElementById("contactFormPanelCollab"),
+  };
+
+  function setActive(target) {
+    tabs.forEach(function (tab) {
+      const active = tab.dataset.contactFormTab === target;
+      tab.classList.toggle("is-active", active);
+      tab.setAttribute("aria-selected", active ? "true" : "false");
+    });
+
+    Object.keys(panels).forEach(function (key) {
+      const panel = panels[key];
+      if (!panel) return;
+
+      const active = key === target;
+      panel.hidden = !active;
+      panel.classList.toggle("is-active", active);
+    });
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      setActive(tab.dataset.contactFormTab);
+    });
+  });
+
+  setActive("project");
+})();
+
+(function () {
+  const track = document.getElementById("paneblogDiaryTrack");
+  const viewport = document.getElementById("paneblogDiaryViewport");
+  const prevBtn = document.getElementById("paneblogDiaryPrev");
+  const nextBtn = document.getElementById("paneblogDiaryNext");
+
+  if (!track || !viewport || !prevBtn || !nextBtn) return;
+
+  const slides = Array.from(track.children);
+  if (!slides.length) return;
+
+  let index = 0;
+
+  function maxIndex() {
+    return window.innerWidth <= 991.98 ? slides.length - 1 : Math.max(0, slides.length - 2);
+  }
+
+  function render() {
+    const limit = maxIndex();
+    if (index > limit) index = limit;
+
+    const firstSlide = slides[0];
+    if (!firstSlide) return;
+
+    const gap = parseFloat(window.getComputedStyle(track).gap || "0");
+    const step = firstSlide.getBoundingClientRect().width + gap;
+    track.style.transform = "translate3d(" + (-index * step).toFixed(2) + "px, 0, 0)";
+
+    prevBtn.disabled = index <= 0;
+    nextBtn.disabled = index >= limit;
+  }
+
+  prevBtn.addEventListener("click", function () {
+    if (index <= 0) return;
+    index -= 1;
+    render();
+  });
+
+  nextBtn.addEventListener("click", function () {
+    if (index >= maxIndex()) return;
+    index += 1;
+    render();
+  });
+
+  window.addEventListener("resize", render);
+  render();
+})();
+
+(function () {
+  const dateEl = document.getElementById("paneblogChatDate");
+  const titleEl = document.getElementById("paneblogChatTitle");
+  const textEl = document.getElementById("paneblogChatText");
+  const avatarImg = document.getElementById("paneblogChatAvatarImg");
+  const prevBtn = document.getElementById("paneblogChatPrev");
+  const nextBtn = document.getElementById("paneblogChatNext");
+  const dotsWrap = document.getElementById("paneblogChatDots");
+  const chatPop = document.querySelector(".paneblog-chat-pop");
+
+  const messages = [
+    {
+      date: "18/03/2026",
+      character: "Marianna",
+      avatar: "https://picsum.photos/seed/paneblog-chat-1/160/160",
+      title: "Flash dal diario",
+      text: "Oggi abbiamo salvato tre appunti utili da una reference trovata quasi per caso.",
+    },
+    {
+      date: "15/03/2026",
+      character: "Camilla",
+      avatar: "https://picsum.photos/seed/paneblog-chat-2/160/160",
+      title: "Nota veloce",
+      text: "Stiamo raccogliendo backstage e piccoli processi da trasformare in articoli piu estesi.",
+    },
+    {
+      date: "12/03/2026",
+      character: "Matteo",
+      avatar: "https://picsum.photos/seed/paneblog-chat-3/160/160",
+      title: "Promemoria interno",
+      text: "Le cose migliori da annotare sono spesso quelle che sul momento sembrano troppo piccole.",
+    },
+  ];
+
+  if (!dateEl || !titleEl || !textEl || !avatarImg || !prevBtn || !nextBtn || !dotsWrap || !chatPop) {
+    return;
+  }
+
+  let activeIndex = 0;
+
+  function mod(index, length) {
+    return ((index % length) + length) % length;
+  }
+
+  const dots = messages.map(function (_, index) {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "chat-dot";
+    dot.setAttribute("aria-label", "Vai al messaggio " + (index + 1));
+    dot.addEventListener("click", function () {
+      render(index);
+    });
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  function render(index) {
+    activeIndex = mod(index, messages.length);
+    const item = messages[activeIndex];
+
+    dateEl.textContent = item.date;
+    titleEl.textContent = item.title;
+    textEl.textContent = item.text;
+    avatarImg.src = item.avatar;
+    avatarImg.alt = "Avatar di " + item.character;
+
+    dots.forEach(function (dot, dotIndex) {
+      dot.classList.toggle("is-active", dotIndex === activeIndex);
+    });
+  }
+
+  prevBtn.addEventListener("click", function () {
+    render(activeIndex - 1);
+  });
+
+  nextBtn.addEventListener("click", function () {
+    render(activeIndex + 1);
+  });
+
+  render(0);
 })();
 
